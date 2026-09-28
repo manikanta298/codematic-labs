@@ -48,7 +48,7 @@ html { scroll-behavior: smooth; background: var(--background); }
 body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-sans); letter-spacing: 0; text-rendering: optimizeLegibility; }
 button, a { -webkit-tap-highlight-color: transparent; }
 a { text-decoration: none; }
-.site-header { position: fixed; inset: 0 0 auto; z-index: 50; border-bottom: 1px solid transparent; background: transparent; backdrop-filter: none; transition: background-color .3s ease, border-color .3s ease, box-shadow .3s ease; }\n.site-header-scrolled { border-bottom-color: oklch(1 0 0 / .12); background: #000; box-shadow: 0 8px 24px oklch(0 0 0 / .22); }
+.site-header { position: fixed; inset: 0 0 auto; z-index: 50; border-bottom: 1px solid transparent; background: transparent; backdrop-filter: none; transition: background-color .3s ease, border-color .3s ease, box-shadow .3s ease; }\n.site-header-scrolled { border-bottom-color: oklch(1 0 0 / .12); background: #000; box-shadow: 0 8px 24px oklch(0 0 0 / .22); }\n.site-header-scrolled .brand-logo-nav { transform: translateY(-4px); transition: transform .3s ease; }
 .brand-logo-nav { display: block; height: 100px; width: auto; aspect-ratio: 2.15 / 1; object-fit: cover; object-position: top center; }
 .nav-link { position: relative; color: var(--muted-foreground); font-size: .82rem; font-weight: 700; transition: color .2s; }
 .nav-link::after { content: ""; position: absolute; inset: auto 0 -.65rem; height: 2px; transform: scaleX(0); background: linear-gradient(90deg, var(--primary-glow), var(--primary)); transition: transform .25s; }
