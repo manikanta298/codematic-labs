@@ -1,6 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
 import { ArrowUpRight, Github, Linkedin, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrandLogo } from "./brand-logo";
 import { Button } from "./button";
 
@@ -14,8 +14,27 @@ const navItems = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const updateHeader = () => {
+      const hero = document.querySelector<HTMLElement>(".home-hero");
+      const threshold = hero ? hero.offsetTop + hero.offsetHeight - 96 : 40;
+      setScrolled(window.scrollY > threshold);
+    };
+
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    window.addEventListener("resize", updateHeader);
+
+    return () => {
+      window.removeEventListener("scroll", updateHeader);
+      window.removeEventListener("resize", updateHeader);
+    };
+  }, []);
+
   return (
-    <header className="site-header">
+    <header className={`site-header${scrolled ? " site-header-scrolled" : ""}`}>
       <div className="mx-auto flex h-20 max-w-site items-center justify-between gap-6 px-page sm:h-24">
         <Link to="/" aria-label="Codematic Labs home" onClick={() => setOpen(false)}><BrandLogo inverted nav /></Link>
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
@@ -24,7 +43,7 @@ export function SiteHeader() {
         <div className="hidden lg:block"><Link to="/contact" className="button-solid">Talk to our team <ArrowUpRight className="size-4" /></Link></div>
         <Button aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} variant="ghost" size="icon" className="text-foreground lg:hidden" onClick={() => setOpen((value) => !value)}>{open ? <X className="size-5" /> : <Menu className="size-5" />}</Button>
       </div>
-      {open && <nav className="mobile-nav lg:hidden" aria-label="Mobile navigation"><Link to="/" onClick={() => setOpen(false)}>Home</Link>{navItems.map((item) => <Link key={item.to} to={item.to} onClick={() => setOpen(false)}>{item.label}</Link>)}<Link to="/contact" onClick={() => setOpen(false)} className="button-solid mt-4">Talk to our team <ArrowUpRight className="size-4" /></Link></nav>}
+      {open && <nav className="mobile-nav lg:hidden" aria-label="Mobile navigation">{navItems.map((item) => <Link key={item.to} to={item.to} onClick={() => setOpen(false)}>{item.label}</Link>)}<Link to="/contact" onClick={() => setOpen(false)} className="button-solid mt-4">Talk to our team <ArrowUpRight className="size-4" /></Link></nav>}
     </header>
   );
 }
