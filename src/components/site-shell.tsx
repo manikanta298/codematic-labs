@@ -1,6 +1,7 @@
 import { NavLink, Link } from "react-router-dom";
 import { ArrowUpRight, Github, Linkedin, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import "../navigation.css";
 import { BrandLogo } from "./brand-logo";
 import { Button } from "./button";
 
