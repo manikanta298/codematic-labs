@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { SiteFooter, SiteHeader } from "./components/site-shell";
 import HomePage from "./routes/index";
 import ServicesPage from "./routes/services";
@@ -32,7 +32,7 @@ export default function App() {
         <Route path="/case-studies/:slug" element={<CaseDetail />} />
         <Route path="/tech-stack" element={<TechPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/case-studies/" element={<Navigate to="/case-studies" replace />} />
+        <Route path="/case-studies/" element={<CasesPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <SiteFooter />
