@@ -245,9 +245,11 @@ export const technologyGroups = [
 export const clientNames = ["ARCLINE", "NORTHSTAR", "VANTAGE", "BRIGHTCO", "FIELDWORK", "ORBITAL"];
 
 // Compatibility aliases for existing homepage sections.
-export const projects = products.slice(0, 3).map((product, index) => ({
+const projectImages: Record<string, string> = { "restaurant-pos": commerceImage, "billing-inventory": cafeImage, "hospital-management": communityImage };
+
+export const projects = products.slice(0, 3).map((product) => ({
   slug: product.slug,
-  image: [commerceImage, cafeImage, communityImage][index],
+  image: projectImages[product.slug],
   imageAlt: product.title,
   category: product.category,
   name: product.shortTitle,
