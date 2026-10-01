@@ -2,6 +2,34 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { AnimatedWords } from "../components/motion";
 import { useReveal } from "../hooks/use-reveal";
-import { projects } from "../lib/site-data";
+import { products } from "../lib/site-data";
 
-export default function CasesPage(){useReveal();return <main><section className="page-hero"><div className="mx-auto max-w-site px-page"><p className="eyebrow">Case studies</p><h1 className="display-title mt-6 max-w-5xl"><AnimatedWords text="Work measured by what moved." accentFrom={3}/></h1><p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">A sample of how focused design and engineering turn business problems into useful, dependable products.</p><p className="mt-6 text-xs font-bold uppercase tracking-[.14em] text-primary-glow">Sample portfolio content — replace with client work</p></div></section><section className="section-shell"><div className="mx-auto max-w-site space-y-8 px-page">{projects.map((project,index)=><article key={project.slug} className="dark-card grid overflow-hidden lg:grid-cols-2" data-reveal><div className={`media-frame photo-treatment border-0 ${index%2 ? "lg:order-2":""}`}><img src={project.image} alt={project.imageAlt} width={1800} height={1200} loading="lazy" className="h-full min-h-[340px] w-full object-cover"/></div><div className="flex flex-col justify-between p-7 sm:p-11"><div><div className="flex flex-wrap items-center justify-between gap-4"><p className="text-xs font-bold uppercase tracking-[.13em] text-primary-glow">{project.category}</p><span className="text-lg font-extrabold">{project.result}</span></div><p className="mt-12 text-sm font-bold text-muted-foreground">{project.name}</p><h2 className="mt-3 text-3xl font-extrabold leading-tight sm:text-4xl">{project.title}</h2><p className="mt-5 leading-7 text-muted-foreground">{project.summary}</p></div><Link to={`/case-studies/${project.slug}`} className="card-link mt-10">Read case study <ArrowUpRight className="size-4"/></Link></div></article>)}</div></section></main>}
+export default function CasesPage() {
+  useReveal();
+  return (
+    <main>
+      <section className="page-hero">
+        <div className="mx-auto max-w-site px-page">
+          <p className="eyebrow">Case studies</p>
+          <h1 className="display-title mt-6 max-w-6xl"><AnimatedWords text="Nine products. Nine stories." accentFrom={2} /></h1>
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">See how each initially developed software product was shaped around a real operational workflow, from the problem through the solution and outcome.</p>
+        </div>
+      </section>
+      <section className="section-shell">
+        <div className="mx-auto max-w-site px-page">
+          <div className="case-index-grid">
+            {products.map((product, index) => { const Icon = product.icon; return (
+              <article key={product.slug} className="case-index-card" data-reveal>
+                <div className="flex items-center justify-between"><div className="product-icon"><Icon className="size-5" /></div><span className="product-index">0{index + 1}</span></div>
+                <p className="product-category mt-8">{product.category}</p>
+                <h2>{product.title}</h2>
+                <p>{product.caseStudy.challenge}</p>
+                <Link to={`/products/${product.slug}`} className="product-link mt-7">Read full case study <ArrowUpRight className="size-4" /></Link>
+              </article>
+            ); })}
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
