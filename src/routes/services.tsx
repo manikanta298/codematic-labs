@@ -1,7 +1,43 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { AnimatedWords } from "../components/motion";
 import { useReveal } from "../hooks/use-reveal";
 import { services } from "../lib/site-data";
 
-export default function ServicesPage(){useReveal();return <main><section className="page-hero"><div className="mx-auto max-w-site px-page"><p className="eyebrow">Services</p><h1 className="display-title mt-6 max-w-5xl"><AnimatedWords text="Everything needed to ship well." accentFrom={3}/></h1><p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">Add one specialist capability or bring in a complete product team. The shape changes; accountable delivery does not.</p></div></section><section className="section-shell"><div className="mx-auto max-w-site px-page"><div className="grid gap-5 md:grid-cols-2">{services.map(({slug,icon:Icon,title,description,details,image,imageAlt},index)=><article key={slug} className="dark-card service-photo-card overflow-hidden" data-reveal><div className="service-photo photo-treatment"><img src={image} alt={imageAlt} width={1600} height={1067} loading="lazy"/></div><div className="p-7 sm:p-10"><div className="flex items-start justify-between gap-5"><div className="icon-badge"><Icon className="size-5"/></div><span className="font-mono text-xs text-primary-glow">{String(index+1).padStart(2,"0")}</span></div><h2 className="mt-10 text-2xl font-extrabold sm:text-3xl">{title}</h2><p className="mt-4 max-w-xl leading-7 text-muted-foreground">{description}</p><ul className="mt-8 grid gap-3 border-t border-border pt-7 sm:grid-cols-2">{details.map((detail)=><li key={detail} className="flex gap-3 text-sm font-bold"><Check className="mt-0.5 size-4 shrink-0 text-primary-glow"/>{detail}</li>)}</ul></div></article>)}</div><div className="mt-16 flex flex-col items-start justify-between gap-7 border-t border-border pt-10 sm:flex-row sm:items-center" data-reveal><p className="max-w-xl text-2xl font-extrabold">Not sure which shape of support fits?</p><Link to="/contact" className="button-solid">Talk through your project <ArrowUpRight className="size-4"/></Link></div></div></section></main>}
+export default function ServicesPage() {
+  useReveal();
+  return (
+    <main>
+      <section className="page-hero">
+        <div className="mx-auto max-w-site px-page">
+          <p className="eyebrow">Services</p>
+          <h1 className="display-title mt-6 max-w-6xl"><AnimatedWords text="From product idea to dependable software." accentFrom={4} /></h1>
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">Nine specialist capabilities that can be used independently or combined into one accountable product team.</p>
+        </div>
+      </section>
+      <section className="section-shell">
+        <div className="mx-auto max-w-site px-page">
+          <div className="service-grid">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <article key={service.slug} className="service-card" data-reveal>
+                  <div className="service-card-image"><img src={service.image} alt={service.imageAlt} loading="lazy" /></div>
+                  <div className="service-card-copy">
+                    <div className="flex items-start justify-between gap-4"><div className="product-icon"><Icon className="size-5" /></div><span className="product-index">0{index + 1}</span></div>
+                    <p className="product-category mt-7">Service</p>
+                    <h2>{service.title}</h2>
+                    <p className="service-description">{service.description}</p>
+                    <div className="service-mini-list">{service.details.map((detail) => <span key={detail}>{detail}</span>)}</div>
+                    <Link to={`/services/${service.slug}`} className="product-link">View service <ArrowUpRight className="size-4" /></Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+      <section className="section-shell product-case-band"><div className="mx-auto max-w-site px-page"><div className="rounded-[6px] border border-border bg-card p-8 sm:p-12"><p className="eyebrow">Flexible engagement</p><h2 className="section-title mt-5 max-w-4xl">Choose one capability or bring us in <span className="text-gradient">end to end.</span></h2><div className="mt-8 flex flex-wrap gap-3"><Link to="/products" className="button-outline">Explore software <ArrowUpRight className="size-4" /></Link><Link to="/contact" className="button-solid">Talk to our team <ArrowUpRight className="size-4" /></Link></div></div></div></section>
+    </main>
+  );
+}
