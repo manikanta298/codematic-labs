@@ -1,8 +1,8 @@
 import {
   Activity, Bot, Boxes, BriefcaseBusiness, CalendarDays, CheckCheck, ClipboardList,
-  CloudCog, Code2, Coins, Database, FileCheck2, Gem, Headphones, HeartPulse,
-  KanbanSquare, LayoutDashboard, LineChart, ListChecks, MapPinned, MessageSquare,
-  PackageCheck, ReceiptText, Rocket, ScanLine, ServerCog, Settings2, ShieldCheck,
+  CloudCog, Code2, Coins, Compass, Database, FileCheck2, Gem, Gauge, Globe2, Headphones, HeartPulse,
+  KanbanSquare, LayoutDashboard, Layers3, LineChart, ListChecks, MapPinned, MessageSquare,
+  PackageCheck, PenTool, ReceiptText, Rocket, ScanLine, ServerCog, Settings2, ShieldCheck,
   ShoppingCart, Smartphone, Sparkles, Stethoscope, Truck, Users, WalletCards,
   Workflow, type LucideIcon,
 } from "lucide-react";
