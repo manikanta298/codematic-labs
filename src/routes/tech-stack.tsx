@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { SemanticIcon } from "../components/semantic-icon";
-import { ArrowUpRight, PanelsTopLeft, Server, Database, CloudCog } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { AnimatedWords } from "../components/motion";
 import { useReveal } from "../hooks/use-reveal";
 import { technologyGroups } from "../lib/site-data";
 
-const categoryIcons = [PanelsTopLeft, Server, Database, CloudCog];
+// A representative tool from each group, using the same unmodified brand assets.
+const categoryLogos = ["react", "nodejs", "postgresql", "docker"];
 
 const technologyLogos: Record<string, string> = {
   React: "react",
@@ -51,7 +51,7 @@ export default function TechPage() {
             {technologyGroups.map((group, index) => (
               <section key={group.title} className="tech-stack-card" aria-labelledby={`tech-group-${index}`} data-reveal>
                 <div className="tech-stack-card-heading">
-                  <span className="tech-stack-number"><SemanticIcon icon={categoryIcons[index]!} /></span>
+                  <span className="tech-stack-brand" aria-hidden="true"><img src={`/technology/${categoryLogos[index]}.svg`} alt="" width={28} height={28} /></span>
                   <h2 id={`tech-group-${index}`}>{group.title}</h2>
                   <span className="tech-stack-count">{group.items.length} tools</span>
                 </div>
