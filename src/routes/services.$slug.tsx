@@ -17,7 +17,7 @@ export default function ServiceDetailPage() {
         <div className="mx-auto max-w-site px-page">
           <Link to="/services" className="card-link"><ArrowLeft className="size-4" /> All services</Link>
           <div className="service-detail-layout mt-12">
-            <div><div className="product-detail-icon"><Icon className="size-8" /></div><p className="product-category mt-8">Service</p><h1 className="display-title mt-4 max-w-5xl">{service.title}</h1><p className="mt-8 max-w-3xl text-xl leading-9 text-muted-foreground">{service.description}</p></div>
+            <div><div className="product-detail-icon"><SemanticIcon icon={Icon} className="size-8" /></div><p className="product-category mt-8">Service</p><h1 className="display-title mt-4 max-w-5xl">{service.title}</h1><p className="mt-8 max-w-3xl text-xl leading-9 text-muted-foreground">{service.description}</p></div>
             <div className="service-detail-image"><img src={service.image} alt={service.imageAlt} /></div>
           </div>
         </div>
