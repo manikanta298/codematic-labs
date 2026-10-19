@@ -13,7 +13,7 @@ export function AnimatedWords({ text, className = "", accentFrom }: { text: stri
 
 export function Counter({ value, suffix = "", duration = 1200 }: { value: number; suffix?: string; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [display, setDisplay] = useState(0);
+  const [display, setDisplay] = useState(value);
   useEffect(() => {
     const node = ref.current;
     if (!node) return;

@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
+import { SemanticIcon } from "../components/semantic-icon";
+import { ArrowUpRight, PanelsTopLeft, Server, Database, CloudCog } from "lucide-react";
 import { AnimatedWords } from "../components/motion";
 import { useReveal } from "../hooks/use-reveal";
 import { technologyGroups } from "../lib/site-data";
+
+const categoryIcons = [PanelsTopLeft, Server, Database, CloudCog];
 
 const technologyLogos: Record<string, string> = {
   React: "react",
@@ -34,7 +37,7 @@ const technologyLogos: Record<string, string> = {
 export default function TechPage() {
   useReveal();
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <section className="page-hero tech-stack-hero">
         <div className="mx-auto max-w-site px-page">
           <p className="eyebrow">Tech stack</p>
@@ -48,7 +51,7 @@ export default function TechPage() {
             {technologyGroups.map((group, index) => (
               <section key={group.title} className="tech-stack-card" aria-labelledby={`tech-group-${index}`} data-reveal>
                 <div className="tech-stack-card-heading">
-                  <span className="tech-stack-number">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="tech-stack-number"><SemanticIcon icon={categoryIcons[index]!} /></span>
                   <h2 id={`tech-group-${index}`}>{group.title}</h2>
                   <span className="tech-stack-count">{group.items.length} tools</span>
                 </div>
