@@ -11,8 +11,8 @@ export default function ServicesPage() {
       <section className="page-hero">
         <div className="mx-auto max-w-site px-page">
           <p className="eyebrow">Services</p>
-          <h1 className="display-title mt-6 max-w-6xl"><AnimatedWords text="From product idea to dependable software." accentFrom={4} /></h1>
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">Nine specialist capabilities that can be used independently or combined into one accountable product team.</p>
+          <h1 className="display-title mt-6 max-w-6xl"><AnimatedWords text="Build better software. Simplify daily work." accentFrom={4} /></h1>
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">Build a new product, improve an existing system, or automate repetitive tasks. Explore nine services, what each includes, and how we take it from first discussion to launch.</p>
         </div>
       </section>
       <section className="section-shell">
@@ -29,7 +29,7 @@ export default function ServicesPage() {
                     <h2>{service.title}</h2>
                     <p className="service-description">{service.description}</p>
                     <div className="service-mini-list">{service.details.map((detail) => <span key={detail}>{detail}</span>)}</div>
-                    <Link to={`/services/${service.slug}`} className="product-link">View service <ArrowUpRight className="size-4" /></Link>
+                    <Link to={`/services/${service.slug}`} className="product-link">See what’s included <ArrowUpRight className="size-4" /></Link>
                   </div>
                 </article>
               );
@@ -37,7 +37,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-      <section className="section-shell product-case-band"><div className="mx-auto max-w-site px-page"><div className="rounded-[6px] border border-border bg-card p-8 sm:p-12"><p className="eyebrow">Flexible engagement</p><h2 className="section-title mt-5 max-w-4xl">Choose one capability or bring us in <span className="text-gradient">end to end.</span></h2><div className="mt-8 flex flex-wrap gap-3"><Link to="/products" className="button-outline">Explore software <ArrowUpRight className="size-4" /></Link><Link to="/contact" className="button-solid">Talk to our team <ArrowUpRight className="size-4" /></Link></div></div></div></section>
+      <section className="section-shell product-case-band"><div className="mx-auto max-w-site px-page"><div className="rounded-[6px] border border-border bg-card p-8 sm:p-12"><p className="eyebrow">Flexible engagement</p><h2 className="section-title mt-5 max-w-4xl">Start with one task or plan <span className="text-gradient">the whole product.</span></h2><div className="mt-8 flex flex-wrap gap-3"><Link to="/products" className="button-outline">Explore software <ArrowUpRight className="size-4" /></Link><Link to="/contact" className="button-solid">Talk to our team <ArrowUpRight className="size-4" /></Link></div></div></div></section>
     </main>
   );
 }
