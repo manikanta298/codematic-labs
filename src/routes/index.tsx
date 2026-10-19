@@ -67,9 +67,9 @@ export default function HomePage() {
           <div className="process-grid mt-14">
             {process.map(({ number, icon: Icon, title, text, outcomes }) => (
               <article key={number} className="process-card" data-reveal>
-                <div className="flex items-start justify-between"><span className="process-number">{number}</span><Icon className="size-6 text-primary-glow" /></div>
+                <div className="flex items-start justify-between"><span className="process-number">{number}</span><SemanticIcon icon={Icon} className="size-6 text-primary-glow" /></div>
                 <h3>{title}</h3><p>{text}</p>
-                <ul>{outcomes.map((item) => <li key={item}><Check className="size-4" />{item}</li>)}</ul>
+                <ul>{outcomes.map((item) => <li key={item}><SemanticIcon icon={Check} className="size-4" />{item}</li>)}</ul>
               </article>
             ))}
           </div>

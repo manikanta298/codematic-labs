@@ -346,10 +346,6 @@ main:focus, h1[tabindex="-1"]:focus { outline: none; }
 .custom-icon-set { display: flex; flex: 0 0 auto; min-width: 100cqw; justify-content: space-around; align-items: center; gap: clamp(1.25rem, 3vw, 2.5rem); padding-right: clamp(1.25rem, 3vw, 2.5rem); }
 .custom-icon-tile { display: grid; place-items: center; flex: 0 0 auto; width: 84px; height: 84px; border: 1px solid rgb(99 209 236 / .25); border-radius: 22px; background: radial-gradient(ellipse at top left, #184154, #0b1720 85%); box-shadow: inset 0 1px 0 rgb(200 246 255 / .12), 0 5px 14px rgb(0 0 0 / .15); }
 .loop-illustration { display: block; width: 44px; height: 44px; overflow: visible; filter: drop-shadow(0 3px 3px rgb(0 0 0 / .2)); }
-.loop-art-back { fill: #126b91; stroke: #69d9ee; stroke-width: 1.15; }
-.loop-art-front { fill: #40c2df; stroke: #b4f2ff; stroke-width: 1.1; }
-.loop-art-line { fill: none; stroke: #8ce5f5; stroke-width: 1.5; }
-.loop-art-shine { fill: none; stroke: #e2fbff; stroke-width: 1.8; }
 .custom-icon-viewport:hover .custom-icon-track, .custom-icon-viewport:focus-within .custom-icon-track { animation-play-state: paused; }
 .custom-service-loop .custom-icon-tile { width: clamp(92px, 12vw, 144px); height: clamp(92px, 12vw, 144px); border-radius: 24px; }
 .custom-service-loop .loop-illustration { width: clamp(48px, 6vw, 68px); height: clamp(48px, 6vw, 68px); }
@@ -360,3 +356,19 @@ main:focus, h1[tabindex="-1"]:focus { outline: none; }
   .custom-icon-set { width: 100%; flex-wrap: wrap; justify-content: center; padding-right: 0; gap: 1rem; }
   .custom-icon-set[data-loop-copy="1"] { display: none; }
 }
+
+/* Shared multi-color gradient artwork, scoped to semantic illustrations. */
+.gradient-icon { display: inline-block; flex: 0 0 auto; vertical-align: middle; width: 28px; height: 28px; overflow: visible; filter: drop-shadow(0 2px 3px rgb(0 0 0 / .22)); }
+.gradient-icon .vi-back { fill: var(--art-body); stroke: var(--art-line); stroke-width: 1.1; }
+.gradient-icon .vi-front { fill: var(--art-front); stroke: var(--art-shine); stroke-width: 1.1; }
+.gradient-icon .vi-line { fill: none; stroke: var(--art-shine); stroke-width: 1.5; }
+.gradient-icon .vi-shine { fill: none; stroke: var(--art-shine); stroke-width: 1.8; }
+.gradient-icon.size-4 { width: 16px; height: 16px; }
+.gradient-icon.size-5 { width: 20px; height: 20px; }
+.gradient-icon.size-6 { width: 24px; height: 24px; }
+.gradient-icon.size-7 { width: 28px; height: 28px; }
+.gradient-icon.size-8 { width: 32px; height: 32px; }
+.product-icon .gradient-icon, .capability-icon .gradient-icon, .icon-badge .gradient-icon { width: 30px; height: 30px; }
+.product-detail-icon .gradient-icon { width: 38px; height: 38px; }
+.gradient-icon.loop-illustration { width: 44px; height: 44px; }
+.custom-service-loop .gradient-icon.loop-illustration { width: clamp(48px, 6vw, 68px); height: clamp(48px, 6vw, 68px); }
