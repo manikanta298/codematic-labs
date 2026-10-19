@@ -1,9 +1,10 @@
+import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Check, MoveRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, MoveRight, UtensilsCrossed, ShoppingBag, HeartPulse, WalletCards, Users, Truck } from "lucide-react";
 import heroImage from "../assets/hero.jpg";
 import { AnimatedWords } from "../components/motion";
 import { useReveal } from "../hooks/use-reveal";
-import { clientNames, process, projects, services } from "../lib/site-data";
+import { process, projects, services } from "../lib/site-data";
 
 export default function HomePage() {
   useReveal();
@@ -98,7 +99,27 @@ export default function HomePage() {
 }
 
 function LogoMarquee() {
-  return <section className="trust-band"><div className="mx-auto grid max-w-site gap-7 px-page md:grid-cols-[210px_1fr] md:items-center"><p className="index-label"><span>Built for</span> Business workflows</p><div className="marquee"><div className="marquee-track">{[...clientNames, ...clientNames].map((name, index) => <span className="marquee-item" key={`${name}-${index}`}>{name}</span>)}</div></div></div></section>;
+  const workflowIcons = [UtensilsCrossed, ShoppingBag, HeartPulse, WalletCards, Users, Truck];
+  return (
+    <section className="trust-band">
+      <div className="mx-auto grid max-w-site gap-7 px-page md:grid-cols-[210px_1fr] md:items-center">
+        <p className="index-label"><span>Built for</span> Business workflows</p>
+        <div className="marquee workflow-marquee" role="img" aria-label="Connected business workflows: orders, shopping, care, payments, teams and deliveries">
+          <div className="marquee-track" aria-hidden="true">
+            {[0, 1].map((copy) => (
+              <div className="marquee-set workflow-icon-set" key={copy}>
+                {workflowIcons.map((Icon, index) => (
+                  <span className="workflow-icon" key={index} style={{ "--icon-accent": ["#fbbf24", "#a78bfa", "#fb7185", "#34d399", "#60a5fa", "#22d3ee"][index] } as CSSProperties}>
+                    <Icon size={28} strokeWidth={1.6} />
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function KineticShowcase() {
