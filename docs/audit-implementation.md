@@ -39,6 +39,6 @@ Run `npm run build`, `npx tsc --noEmit`, `npm run check:build` and `git diff --c
 
 The build check covers 34 generated pages, internal links, unique metadata/canonicals, all local asset references, 24 unchanged technology logos, 18 five-step product/case flows, the sitemap and 404 output.
 
-The managed local browser preview is unavailable in this environment. Narrow-device layouts, screen-reader output, full rendered contrast checks and Safari/Firefox remain unverified. Vercel endpoint checks and browser interaction QA should use the branch preview when accessible.
+The managed local browser preview is unavailable in this environment. Narrow-device layouts, screen-reader output, full rendered contrast checks and Safari/Firefox remain unverified. The branch preview deployed successfully, but both the browser and HTTP reader were redirected to Vercel sign-in. Endpoint status, hydration, scroll/focus interactions and visual checks therefore remain unverified on the deployed preview; no authentication protections were bypassed.
 
 No competitor testimonials, partner credentials, guarantees or measured results were copied. No unsupported legal policies or delivery SLAs were created. Real client evidence, a verified LinkedIn profile and a consultation-delivery integration remain business inputs rather than fabricated content.
