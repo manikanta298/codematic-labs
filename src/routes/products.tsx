@@ -7,7 +7,7 @@ import { products } from "../lib/site-data";
 export default function ProductsPage() {
   useReveal();
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <section className="page-hero product-hero">
         <div className="mx-auto max-w-site px-page">
           <p className="eyebrow">Our software</p>

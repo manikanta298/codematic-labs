@@ -7,7 +7,7 @@ import { services } from "../lib/site-data";
 export default function ServicesPage() {
   useReveal();
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <section className="page-hero">
         <div className="mx-auto max-w-site px-page">
           <p className="eyebrow">Services</p>

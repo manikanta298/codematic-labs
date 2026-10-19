@@ -5,18 +5,22 @@ import ServicesPage from "./routes/services";
 import ServiceDetailPage from "./routes/services.$slug";
 import ProductsPage from "./routes/products";
 import ProductDetailPage from "./routes/products.$slug";
+import CaseDetailPage from "./routes/case-studies.$slug";
+import { RouteEffects } from "./components/route-effects";
 import WhyPage from "./routes/why-us";
 import CasesPage from "./routes/case-studies.index";
 import TechPage from "./routes/tech-stack";
 import ContactPage from "./routes/contact";
 
 function NotFound() {
-  return <main className="page-hero"><div className="mx-auto max-w-site px-page text-center"><h1 className="display-title">404</h1><p className="mt-6 text-lg text-muted-foreground">Page not found.</p><a href="/" className="button-solid mt-8">Go home</a></div></main>;
+  return <main id="main-content" tabIndex={-1} className="page-hero"><div className="mx-auto max-w-site px-page text-center"><h1 className="display-title">404</h1><p className="mt-6 text-lg text-muted-foreground">Page not found.</p><a href="/" className="button-solid mt-8">Go home</a></div></main>;
 }
 
-export default function App() {
+export function SiteContents() {
   return (
-    <BrowserRouter>
+    <>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+      <RouteEffects />
       <SiteHeader />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -26,12 +30,16 @@ export default function App() {
         <Route path="/services/:slug" element={<ServiceDetailPage />} />
         <Route path="/why-us" element={<WhyPage />} />
         <Route path="/case-studies" element={<CasesPage />} />
-        <Route path="/case-studies/:slug" element={<ProductDetailPage caseStudy />} />
+        <Route path="/case-studies/:slug" element={<CaseDetailPage />} />
         <Route path="/tech-stack" element={<TechPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <SiteFooter />
-    </BrowserRouter>
+    </>
   );
+}
+
+export default function App() {
+  return <BrowserRouter><SiteContents /></BrowserRouter>;
 }

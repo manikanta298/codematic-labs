@@ -1,3 +1,4 @@
+import { BookOpen, ChartNoAxesCombined, ChefHat, CircleCheck, Cloud, CreditCard, Download, FileChartColumnIncreasing, FilePlus2, Flag, GitBranch, History, ListFilter, ListPlus, MapPin, MessageSquareReply, MousePointer2, Package, PackagePlus, PackageSearch, PanelsTopLeft, Plug, RefreshCw, Search, Send, Table2, Tags, Timer, UserPlus, UserRoundCheck, Wrench } from "lucide-react";
 import {
   Activity, Bot, Boxes, BriefcaseBusiness, CalendarDays, CheckCheck, ClipboardList,
   CloudCog, Code2, Coins, Compass, Database, FileCheck2, Gem, Gauge, Globe2, Headphones, HeartPulse,
@@ -44,13 +45,13 @@ export const products: Product[] = [
     category: "Hospitality",
     description: "A fast point-of-sale platform for restaurants, cafés, cloud kitchens and multi-counter operations.",
     audience: "Restaurants, cafés, food courts and quick-service teams",
-    features: ["Fast order taking and table management", "KOT and kitchen workflow", "Billing, discounts and tax rules", "Day-end sales and payment reports"],
+    features: ["Fast order taking and table management", "Kitchen order tickets (KOT) and workflow", "Billing, discounts and tax rules", "Day-end sales and payment reports"],
     outcomes: ["Faster order-to-bill flow", "Fewer billing mistakes", "Clearer kitchen coordination"],
     caseStudy: {
       context: "Restaurants and cafés coordinating orders, kitchen tickets and payments.",
       challenge: "Staff switch between separate tools for orders, kitchen tickets and billing. During busy shifts, this makes it harder to keep everyone up to date.",
       solution: "Bring tables, orders, kitchen tickets and payments into one POS. Staff enter the order once and follow it through to checkout.",
-      workflow: ["Select table or counter", "Build order with modifiers", "Send KOT to kitchen", "Settle bill and payment", "Review shift and day-end reports"],
+      workflow: ["Select table or counter", "Build order with modifiers", "Send kitchen order ticket", "Settle bill and payment", "Review shift and day-end reports"],
       result: "The intended result is a smoother order-to-payment process, with fewer repeated entries and a clear sales summary at shift end."
     }
   },
@@ -212,14 +213,14 @@ export type Service = {
 };
 
 export const services: Service[] = [
-  { slug: "custom-software-development", icon: Code2, title: "Custom Software Development", description: "Replace scattered tools with software for your orders, records, approvals and reporting.", details: ["Product architecture", "Web application engineering", "API and systems integration"], deliverables: ["Discovery and technical plan", "Responsive application", "Testing and deployment"], image: webImage, imageAlt: "Software source code open in a developer workspace", },
+  { slug: "custom-software-development", icon: Code2, title: "Custom Software Development", description: "Replace scattered tools with software for your orders, records, approvals and reporting.", details: ["Product architecture", "Web application engineering", "Connections between applications (APIs)"], deliverables: ["Discovery and technical plan", "Responsive application", "Testing and deployment"], image: webImage, imageAlt: "Software source code open in a developer workspace", },
   { slug: "ui-ux-product-design", icon: Sparkles, title: "UI/UX & Product Design", description: "Make complex tasks easier with clear screens, simple navigation and prototypes you can test.", details: ["UX flows and wireframes", "Design systems", "Interactive prototypes"], deliverables: ["User journeys", "High-fidelity screens", "Reusable components"], image: uxImage, imageAlt: "Interface wireframes used during a product design workshop", },
-  { slug: "web-development", icon: Globe2, title: "Web Development", description: "Build a website or web app that works across devices and is easy to use and update.", details: ["React and modern frontend", "CMS and API integration", "Performance optimisation"], deliverables: ["Responsive frontend", "SEO-ready structure", "Deployment setup"], image: marketingImage, imageAlt: "Creative team discussing a web project", },
+  { slug: "web-development", icon: Globe2, title: "Web Development", description: "Build a website or web app that works across devices and is easy to use and update.", details: ["React and modern frontend", "Content management and application connections", "Performance optimisation"], deliverables: ["Responsive frontend", "SEO-ready structure", "Deployment setup"], image: marketingImage, imageAlt: "Creative team discussing a web project", },
   { slug: "mobile-app-development", icon: Smartphone, title: "Mobile App Development", description: "Give customers or staff an iOS and Android app for the tasks they need to complete on the go.", details: ["React Native apps", "Mobile-first UX", "App release support"], deliverables: ["iOS and Android app", "Reusable UI system", "Release-ready builds"], image: mobileImage, imageAlt: "Person using a mobile application", },
   { slug: "ecommerce-solutions", icon: ShoppingCart, title: "E-commerce Solutions", description: "Bring products, checkout, payments and order management together in an online store.", details: ["Storefront development", "Payments and integrations", "Commerce analytics"], deliverables: ["Product catalogue", "Checkout flow", "Operations integration"], image: ecommerceImage, imageAlt: "Small business owner packing an online order", },
   { slug: "business-automation", icon: Workflow, title: "Business Automation", description: "Move data between your tools, send updates and route approvals without repeating the same manual steps.", details: ["Workflow mapping", "Automation rules", "Notifications and handoffs"], deliverables: ["Automation blueprint", "Integrated workflows", "Monitoring approach"], image: toolingImage, imageAlt: "Professional team reviewing operations together", },
   { slug: "ai-chatbot-development", icon: Bot, title: "AI & Chatbot Development", description: "Answer repeat questions, capture enquiries and help staff find approved information, with human handoff when needed.", details: ["Knowledge-based assistants", "Lead qualification", "Human handoff flows"], deliverables: ["Conversation design", "Chat interface", "Knowledge workflow"], image: communityImage, imageAlt: "Team collaborating on an AI-enabled workflow", },
-  { slug: "cloud-devops", icon: CloudCog, title: "Cloud & DevOps", description: "Set up hosting, automated releases and monitoring so your software is easier to deploy and maintain.", details: ["Cloud architecture", "CI/CD pipelines", "Monitoring and environments"], deliverables: ["Deployment pipeline", "Environment strategy", "Operational documentation"], image: cafeImage, imageAlt: "Modern operations environment", },
+  { slug: "cloud-devops", icon: CloudCog, title: "Cloud & DevOps", description: "Set up hosting, automated releases and monitoring so your software is easier to deploy and maintain.", details: ["Cloud architecture", "Automated build and release pipelines (CI/CD)", "Monitoring and environments"], deliverables: ["Deployment pipeline", "Environment strategy", "Operational documentation"], image: cafeImage, imageAlt: "Modern operations environment", },
   { slug: "maintenance-support", icon: Headphones, title: "Maintenance & Product Support", description: "Keep software useful after launch with bug fixes, updates, performance checks and planned improvements.", details: ["Bug fixes and upgrades", "Performance reviews", "Feature iterations"], deliverables: ["Support backlog", "Release cycles", "Health checks"], image: webImage, imageAlt: "Developer workspace used for product maintenance", },
 ];
 
@@ -253,9 +254,35 @@ export const projects = products.slice(0, 3).map((product) => ({
   imageAlt: product.title,
   category: product.category,
   name: product.shortTitle,
+  icon: product.icon,
   title: product.title,
   result: product.outcomes[0],
   summary: product.description,
   challenge: product.caseStudy.challenge,
   approach: product.caseStudy.solution,
 }));
+export type ProductPresentation = { workflow: readonly LucideIcon[]; outcomes: readonly LucideIcon[]; serviceSlug: string };
+export const productPresentation: Record<string, ProductPresentation> = {
+  "restaurant-pos": { workflow: [Table2, ListPlus, ChefHat, CreditCard, ChartNoAxesCombined], outcomes: [Timer, ShieldCheck, Users], serviceSlug: "custom-software-development" },
+  "billing-inventory": { workflow: [Package, PackagePlus, ReceiptText, RefreshCw, ChartNoAxesCombined], outcomes: [PackageSearch, FileCheck2, Timer], serviceSlug: "custom-software-development" },
+  "hospital-management": { workflow: [UserPlus, CalendarDays, ClipboardList, HeartPulse, ReceiptText], outcomes: [ClipboardList, Users, Timer], serviceSlug: "custom-software-development" },
+  "daily-book": { workflow: [BookOpen, ReceiptText, Tags, WalletCards, Download], outcomes: [BookOpen, CheckCheck, ChartNoAxesCombined], serviceSlug: "custom-software-development" },
+  "check-management": { workflow: [FilePlus2, CalendarDays, ListChecks, CircleCheck, FileChartColumnIncreasing], outcomes: [CalendarDays, CircleCheck, Database], serviceSlug: "business-automation" },
+  "jewellery-management": { workflow: [Gem, ScanLine, Users, ReceiptText, History], outcomes: [ScanLine, Users, Settings2], serviceSlug: "custom-software-development" },
+  "employee-tasking": { workflow: [Users, ClipboardList, Flag, ListChecks, ChartNoAxesCombined], outcomes: [UserRoundCheck, ListChecks, CircleCheck], serviceSlug: "business-automation" },
+  "logistics-management": { workflow: [Package, Truck, Send, MapPin, PackageCheck], outcomes: [MapPin, Truck, Timer], serviceSlug: "business-automation" },
+  "business-chatbots": { workflow: [MessageSquare, Bot, ListFilter, ClipboardList, UserRoundCheck], outcomes: [MessageSquareReply, ClipboardList, Timer], serviceSlug: "ai-chatbot-development" },
+};
+
+export type ServicePresentation = { coverage: readonly LucideIcon[]; deliverables: readonly LucideIcon[]; steps: readonly string[] };
+export const servicePresentation: Record<string, ServicePresentation> = {
+  "custom-software-development": { coverage: [Layers3, Code2, Plug], deliverables: [Compass, PanelsTopLeft, FileCheck2], steps: ["Map the users, records, permissions and business rules your application needs.", "Review the proposed screens, data structure and connections to existing tools.", "Review working features, test the main business workflows and prepare the release."] },
+  "ui-ux-product-design": { coverage: [Workflow, PanelsTopLeft, MousePointer2], deliverables: [MapPinned, PanelsTopLeft, Boxes], steps: ["Identify the users, their tasks and the points where the current experience causes confusion.", "Review user journeys, wireframes and a clickable prototype before final screen design.", "Refine the screens and reusable components, then prepare the design handoff for development."] },
+  "web-development": { coverage: [Code2, Plug, Gauge], deliverables: [PanelsTopLeft, Search, Cloud], steps: ["Clarify the pages, audience, content and systems the website needs to connect to.", "Review page structure, responsive designs and content-management requirements.", "Build the pages, test links and layouts, and prepare deployment and future updates."] },
+  "mobile-app-development": { coverage: [Smartphone, Smartphone, Send], deliverables: [Smartphone, PanelsTopLeft, PackageCheck], steps: ["Identify which tasks people need to complete on their phones and which devices they use.", "Review mobile flows, screens and the integrations the app needs.", "Build and test the app, prepare release-ready builds and agree the release requirements."] },
+  "ecommerce-solutions": { coverage: [ShoppingCart, CreditCard, ChartNoAxesCombined], deliverables: [Package, ShoppingCart, Plug], steps: ["Map the catalogue, customer journey, payments and order-handling process.", "Review the storefront, checkout and connections to operations tools.", "Build and test browsing, checkout and order flows before preparing the store for launch."] },
+  "business-automation": { coverage: [Workflow, Settings2, MessageSquare], deliverables: [ClipboardList, Plug, Activity], steps: ["Map the manual task, its trigger, the data involved and where a person must approve.", "Agree the rules, connected systems, exception handling and handoff points.", "Build the workflow, test normal and failure paths, and document monitoring and ownership."] },
+  "ai-chatbot-development": { coverage: [Bot, ListFilter, UserRoundCheck], deliverables: [MessageSquare, Bot, BookOpen], steps: ["Identify the questions, approved information and handoff needs for the assistant.", "Review conversation flows, knowledge sources and the limits of automated responses.", "Build and test the assistant against agreed examples, including escalation to a person."] },
+  "cloud-devops": { coverage: [Cloud, GitBranch, Activity], deliverables: [GitBranch, Cloud, BookOpen], steps: ["Review the application, hosting needs, environments and current release process.", "Agree deployment steps, access requirements and monitoring responsibilities.", "Set up and test the release pipeline, then document environments and operational checks."] },
+  "maintenance-support": { coverage: [Wrench, Gauge, RefreshCw], deliverables: [ClipboardList, GitBranch, Activity], steps: ["Review the existing product, known issues and the improvements that matter most.", "Agree a prioritized backlog, review points and the checks needed for each change.", "Implement and test agreed changes, review product health and plan subsequent releases."] },
+};

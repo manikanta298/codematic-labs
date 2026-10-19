@@ -1,4 +1,6 @@
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
+import { SemanticIcon } from "../components/semantic-icon";
+import { MotionControl } from "../components/motion-control";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Check, MoveRight, UtensilsCrossed, ShoppingBag, HeartPulse, WalletCards, Users, Truck } from "lucide-react";
 import heroImage from "../assets/hero.jpg";
@@ -10,7 +12,7 @@ export default function HomePage() {
   useReveal();
 
   return (
-    <main className="overflow-x-clip">
+    <main id="main-content" tabIndex={-1} className="overflow-x-clip">
       <section className="home-hero">
         <img src={heroImage} alt="Software developer working across multiple monitors in a dark studio" width={2000} height={1500} className="hero-image" />
         <div className="hero-overlay" />
@@ -45,7 +47,7 @@ export default function HomePage() {
             {services.map(({ slug, icon: Icon, title, description }, index) => (
               <article key={title} className="capability-row group" data-reveal>
                 <span className="capability-number">{String(index + 1).padStart(2, "0")}</span>
-                <div className="capability-icon"><Icon className="size-5" /></div>
+                <div className="capability-icon"><SemanticIcon icon={Icon} /></div>
                 <h3>{title}</h3>
                 <p>{description}</p>
                 <Link to={`/services/${slug}`} aria-label={`Explore ${title}`} className="capability-link"><ArrowUpRight className="size-5" /></Link>
@@ -86,7 +88,7 @@ export default function HomePage() {
             {projects.map((project, index) => (
               <Link key={project.slug} to={`/case-studies/${project.slug}`} className={`project-editorial-card group project-card-${index + 1}`} data-reveal>
                 <div className="media-frame photo-treatment"><img src={project.image} alt={project.imageAlt} width={1800} height={1200} loading="lazy" /></div>
-                <div className="project-card-copy"><div><p>{project.category}</p><span>{project.result}</span></div><h3>{project.title}</h3><span className="project-name">{project.name}</span></div>
+                <div className="project-card-copy"><div><p className="project-category-with-icon"><SemanticIcon icon={project.icon} />{project.category}</p><span>{project.result}</span></div><h3>{project.title}</h3><span className="project-name">{project.name}</span></div>
               </Link>
             ))}
           </div>
@@ -99,12 +101,13 @@ export default function HomePage() {
 }
 
 function LogoMarquee() {
+  const [paused, setPaused] = useState(false);
   const workflowIcons = [UtensilsCrossed, ShoppingBag, HeartPulse, WalletCards, Users, Truck];
   return (
-    <section className="trust-band">
+    <section className="trust-band" data-motion-paused={paused}>
       <div className="mx-auto grid max-w-site gap-7 px-page md:grid-cols-[210px_1fr] md:items-center">
-        <p className="index-label"><span>Built for</span> Business workflows</p>
-        <div className="marquee workflow-marquee" role="img" aria-label="Connected business workflows: orders, shopping, care, payments, teams and deliveries">
+        <div><p className="index-label"><span>Built for</span> Business workflows</p><MotionControl paused={paused} onToggle={() => setPaused(!paused)} controls="business-workflow-loop" /></div>
+        <div id="business-workflow-loop" className="marquee workflow-marquee" role="img" aria-label="Connected business workflows: orders, shopping, care, payments, teams and deliveries">
           <div className="marquee-track" aria-hidden="true">
             {[0, 1].map((copy) => (
               <div className="marquee-set workflow-icon-set" key={copy}>
@@ -123,9 +126,10 @@ function LogoMarquee() {
 }
 
 function KineticShowcase() {
+  const [paused, setPaused] = useState(false);
   const items = [...services.slice(0, 4), ...services.slice(0, 4)];
   const reverse = [...services.slice(2, 6), ...services.slice(2, 6)];
-  return <section className="loop-section" aria-label="Codematic Labs capabilities in motion"><div className="loop-heading mx-auto max-w-site px-page" data-reveal><p className="index-label"><span>Built to move</span> One connected team</p><p>From understanding your workflow to designing, building and supporting the solution.</p></div><div className="loop-viewport"><div className="loop-track">{items.map(({ icon: Icon, title }, index) => <div className="loop-card" key={`${title}-forward-${index}`}><Icon className="size-5" /><span>{title}</span><small>Codematic Labs</small></div>)}</div><div className="loop-track loop-track-reverse">{reverse.map(({ icon: Icon, title }, index) => <div className="loop-card loop-card-muted" key={`${title}-reverse-${index}`}><Icon className="size-5" /><span>{title}</span><small>From idea to launch</small></div>)}</div></div></section>;
+  return <section className="loop-section" data-motion-paused={paused} aria-label="Codematic Labs capabilities in motion"><div className="loop-heading mx-auto max-w-site px-page" data-reveal><p className="index-label"><span>Built to move</span> One connected team</p><p>From understanding your workflow to designing, building and supporting the solution.</p><MotionControl paused={paused} onToggle={() => setPaused(!paused)} controls="capability-loop" /></div><div className="loop-viewport" id="capability-loop"><div className="loop-track">{items.map(({ icon: Icon, title }, index) => <div className="loop-card" aria-hidden={index >= 4 ? true : undefined} key={`${title}-forward-${index}`}><Icon className="size-5" /><span>{title}</span><small>Codematic Labs</small></div>)}</div><div className="loop-track loop-track-reverse">{reverse.map(({ icon: Icon, title }, index) => <div className="loop-card loop-card-muted" aria-hidden={index >= 4 ? true : undefined} key={`${title}-reverse-${index}`}><Icon className="size-5" /><span>{title}</span><small>From idea to launch</small></div>)}</div></div></section>;
 }
 
 function CTA() {
