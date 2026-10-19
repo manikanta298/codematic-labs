@@ -23,6 +23,12 @@ const technologyLogos: Record<string, string> = {
   Docker: "docker",
   "GitHub Actions": "githubactions",
   Cloudflare: "cloudflare",
+  "Vue.js": "vuejs",
+  Python: "python",
+  Django: "django",
+  MySQL: "mysql",
+  SQLite: "sqlite",
+  Kubernetes: "kubernetes",
 };
 
 export default function TechPage() {
