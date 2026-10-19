@@ -341,15 +341,15 @@ main:focus, h1[tabindex="-1"]:focus { outline: none; }
 /* Custom icon loops are scoped to Home; technology logos stay untouched. */
 .custom-icon-viewport { container-type: inline-size; overflow: hidden; min-width: 0; padding: .75rem 0; mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent); }
 .custom-icon-viewport:focus-visible { outline: 2px solid var(--primary-glow); outline-offset: 5px; }
-.custom-icon-track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
+.custom-icon-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
 .custom-icon-track-reverse { animation-direction: reverse; animation-duration: 36s; margin-top: 1rem; }
-.custom-icon-set { display: flex; flex: 0 0 auto; min-width: 100cqw; justify-content: space-around; align-items: center; gap: clamp(1.25rem, 3vw, 2.5rem); padding-right: clamp(1.25rem, 3vw, 2.5rem); }
-.custom-icon-tile { display: grid; place-items: center; flex: 0 0 auto; width: 84px; height: 84px; border: 1px solid rgb(99 209 236 / .25); border-radius: 22px; background: radial-gradient(ellipse at top left, #184154, #0b1720 85%); box-shadow: inset 0 1px 0 rgb(200 246 255 / .12), 0 5px 14px rgb(0 0 0 / .15); }
+.custom-icon-set { display: flex; flex: 0 0 auto; min-width: 100cqw; justify-content: space-around; align-items: center; gap: clamp(1rem, 2.5vw, 2rem); padding-right: clamp(1rem, 2.5vw, 2rem); }
+.custom-icon-tile { display: grid; place-items: center; flex: 0 0 auto; width: 64px; height: 64px; border: 1px solid rgb(99 209 236 / .25); border-radius: 16px; background: radial-gradient(ellipse at top left, #184154, #0b1720 85%); box-shadow: inset 0 1px 0 rgb(200 246 255 / .12), 0 5px 14px rgb(0 0 0 / .15); }
 .loop-illustration { display: block; width: 44px; height: 44px; overflow: visible; filter: drop-shadow(0 3px 3px rgb(0 0 0 / .2)); }
-.custom-icon-viewport:hover .custom-icon-track, .custom-icon-viewport:focus-within .custom-icon-track { animation-play-state: paused; }
-.custom-service-loop .custom-icon-tile { width: clamp(92px, 12vw, 144px); height: clamp(92px, 12vw, 144px); border-radius: 24px; }
-.custom-service-loop .loop-illustration { width: clamp(48px, 6vw, 68px); height: clamp(48px, 6vw, 68px); }
-@media (max-width: 540px) { .custom-icon-tile { width: 72px; height: 72px; border-radius: 18px; } }
+.custom-icon-viewport:focus-within .custom-icon-track { animation-play-state: paused; }
+.custom-service-loop .custom-icon-viewport { max-width: var(--site); margin-inline: auto; }
+
+@media (max-width: 540px) { .custom-icon-tile { width: 56px; height: 56px; border-radius: 14px; } }
 @media (prefers-reduced-motion: reduce) {
   .custom-icon-viewport { mask-image: none; }
   .custom-icon-track { animation: none; width: 100%; }
@@ -370,5 +370,7 @@ main:focus, h1[tabindex="-1"]:focus { outline: none; }
 .gradient-icon.size-8 { width: 32px; height: 32px; }
 .product-icon .gradient-icon, .capability-icon .gradient-icon, .icon-badge .gradient-icon { width: 30px; height: 30px; }
 .product-detail-icon .gradient-icon { width: 38px; height: 38px; }
-.gradient-icon.loop-illustration { width: 44px; height: 44px; }
-.custom-service-loop .gradient-icon.loop-illustration { width: clamp(48px, 6vw, 68px); height: clamp(48px, 6vw, 68px); }
+.gradient-icon.loop-illustration { width: 32px; height: 32px; }
+
+
+@media (max-width: 540px) { .gradient-icon.loop-illustration { width: 28px; height: 28px; } }

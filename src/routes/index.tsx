@@ -125,8 +125,7 @@ function KineticShowcase() {
       <p>From understanding your workflow to designing, building and supporting the solution.</p>
     </div>
     <div id="capability-loop" className="custom-icon-viewport" role="img" tabIndex={0} aria-label="Our services: custom software, product design, web and mobile development, commerce, automation, AI assistants, cloud and DevOps, and maintenance and product support">
-      <IconTrack icons={["code", "design", "web", "mobile", "shop"]} />
-      <IconTrack icons={["workflow", "bot", "cloud", "tools"]} reverse />
+      <IconTrack icons={["code", "design", "web", "mobile", "shop", "workflow", "bot", "cloud", "tools"]} />
     </div>
   </section>;
 }
