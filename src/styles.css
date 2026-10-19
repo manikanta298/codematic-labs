@@ -337,3 +337,26 @@ main:focus, h1[tabindex="-1"]:focus { outline: none; }
   .tech-stack-card-heading { gap: .6rem; }
   .faq-list details { padding: 1.1rem; }
 }
+
+/* Custom icon loops are scoped to Home; technology logos stay untouched. */
+.custom-icon-viewport { container-type: inline-size; overflow: hidden; min-width: 0; padding: .75rem 0; mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent); }
+.custom-icon-viewport:focus-visible { outline: 2px solid var(--primary-glow); outline-offset: 5px; }
+.custom-icon-track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
+.custom-icon-track-reverse { animation-direction: reverse; animation-duration: 36s; margin-top: 1rem; }
+.custom-icon-set { display: flex; flex: 0 0 auto; min-width: 100cqw; justify-content: space-around; align-items: center; gap: clamp(1.25rem, 3vw, 2.5rem); padding-right: clamp(1.25rem, 3vw, 2.5rem); }
+.custom-icon-tile { display: grid; place-items: center; flex: 0 0 auto; width: 84px; height: 84px; border: 1px solid rgb(99 209 236 / .25); border-radius: 22px; background: radial-gradient(ellipse at top left, #184154, #0b1720 85%); box-shadow: inset 0 1px 0 rgb(200 246 255 / .12), 0 5px 14px rgb(0 0 0 / .15); }
+.loop-illustration { display: block; width: 44px; height: 44px; overflow: visible; filter: drop-shadow(0 3px 3px rgb(0 0 0 / .2)); }
+.loop-art-back { fill: #126b91; stroke: #69d9ee; stroke-width: 1.15; }
+.loop-art-front { fill: #40c2df; stroke: #b4f2ff; stroke-width: 1.1; }
+.loop-art-line { fill: none; stroke: #8ce5f5; stroke-width: 1.5; }
+.loop-art-shine { fill: none; stroke: #e2fbff; stroke-width: 1.8; }
+.custom-icon-viewport:hover .custom-icon-track, .custom-icon-viewport:focus-within .custom-icon-track { animation-play-state: paused; }
+.custom-service-loop .custom-icon-tile { width: clamp(92px, 12vw, 144px); height: clamp(92px, 12vw, 144px); border-radius: 24px; }
+.custom-service-loop .loop-illustration { width: clamp(48px, 6vw, 68px); height: clamp(48px, 6vw, 68px); }
+@media (max-width: 540px) { .custom-icon-tile { width: 72px; height: 72px; border-radius: 18px; } }
+@media (prefers-reduced-motion: reduce) {
+  .custom-icon-viewport { mask-image: none; }
+  .custom-icon-track { animation: none; width: 100%; }
+  .custom-icon-set { width: 100%; flex-wrap: wrap; justify-content: center; padding-right: 0; gap: 1rem; }
+  .custom-icon-set[data-loop-copy="1"] { display: none; }
+}

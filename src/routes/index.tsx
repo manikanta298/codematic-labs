@@ -1,8 +1,7 @@
-import { useState, type CSSProperties } from "react";
 import { SemanticIcon } from "../components/semantic-icon";
-import { MotionControl } from "../components/motion-control";
+import { LoopIllustration, type LoopIconKind } from "../components/loop-illustration";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Check, MoveRight, UtensilsCrossed, ShoppingBag, HeartPulse, WalletCards, Users, Truck } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, MoveRight } from "lucide-react";
 import heroImage from "../assets/hero.jpg";
 import { AnimatedWords } from "../components/motion";
 import { useReveal } from "../hooks/use-reveal";
@@ -100,36 +99,36 @@ export default function HomePage() {
   );
 }
 
+function IconTrack({ icons, reverse = false }: { icons: readonly LoopIconKind[]; reverse?: boolean }) {
+  return <div className={`custom-icon-track${reverse ? " custom-icon-track-reverse" : ""}`} aria-hidden="true">
+    {[0, 1].map(copy => <div className="custom-icon-set" data-loop-copy={copy} key={copy}>
+      {icons.map((kind, index) => <span className="custom-icon-tile" key={`${kind}-${index}`}><LoopIllustration kind={kind} /></span>)}
+    </div>)}
+  </div>;
+}
+
 function LogoMarquee() {
-  const [paused, setPaused] = useState(false);
-  const workflowIcons = [UtensilsCrossed, ShoppingBag, HeartPulse, WalletCards, Users, Truck];
-  return (
-    <section className="trust-band" data-motion-paused={paused}>
-      <div className="mx-auto grid max-w-site gap-7 px-page md:grid-cols-[210px_1fr] md:items-center">
-        <div><p className="index-label"><span>Built for</span> Business workflows</p><MotionControl paused={paused} onToggle={() => setPaused(!paused)} controls="business-workflow-loop" /></div>
-        <div id="business-workflow-loop" className="marquee workflow-marquee" role="img" aria-label="Connected business workflows: orders, shopping, care, payments, teams and deliveries">
-          <div className="marquee-track" aria-hidden="true">
-            {[0, 1].map((copy) => (
-              <div className="marquee-set workflow-icon-set" key={copy}>
-                {workflowIcons.map((Icon, index) => (
-                  <span className="workflow-icon" key={index} style={{ "--icon-accent": ["#fbbf24", "#a78bfa", "#fb7185", "#34d399", "#60a5fa", "#22d3ee"][index] } as CSSProperties}>
-                    <Icon size={28} strokeWidth={1.6} />
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
+  return <section className="trust-band custom-workflow-band">
+    <div className="mx-auto grid max-w-site gap-7 px-page md:grid-cols-[210px_1fr] md:items-center">
+      <p className="index-label"><span>Built for</span> Business workflows</p>
+      <div id="business-workflow-loop" className="custom-icon-viewport" role="img" tabIndex={0} aria-label="Connected business workflows: orders, shopping, care, payments, teams and deliveries">
+        <IconTrack icons={["food", "shop", "health", "wallet", "team", "truck"]} />
       </div>
-    </section>
-  );
+    </div>
+  </section>;
 }
 
 function KineticShowcase() {
-  const [paused, setPaused] = useState(false);
-  const items = [...services.slice(0, 4), ...services.slice(0, 4)];
-  const reverse = [...services.slice(2, 6), ...services.slice(2, 6)];
-  return <section className="loop-section" data-motion-paused={paused} aria-label="Codematic Labs capabilities in motion"><div className="loop-heading mx-auto max-w-site px-page" data-reveal><p className="index-label"><span>Built to move</span> One connected team</p><p>From understanding your workflow to designing, building and supporting the solution.</p><MotionControl paused={paused} onToggle={() => setPaused(!paused)} controls="capability-loop" /></div><div className="loop-viewport" id="capability-loop"><div className="loop-track">{items.map(({ icon: Icon, title }, index) => <div className="loop-card" aria-hidden={index >= 4 ? true : undefined} key={`${title}-forward-${index}`}><Icon className="size-5" /><span>{title}</span><small>Codematic Labs</small></div>)}</div><div className="loop-track loop-track-reverse">{reverse.map(({ icon: Icon, title }, index) => <div className="loop-card loop-card-muted" aria-hidden={index >= 4 ? true : undefined} key={`${title}-reverse-${index}`}><Icon className="size-5" /><span>{title}</span><small>From idea to launch</small></div>)}</div></div></section>;
+  return <section className="loop-section custom-service-loop" aria-label="Codematic Labs capabilities in motion">
+    <div className="loop-heading mx-auto max-w-site px-page" data-reveal>
+      <p className="index-label"><span>Built to move</span> One connected team</p>
+      <p>From understanding your workflow to designing, building and supporting the solution.</p>
+    </div>
+    <div id="capability-loop" className="custom-icon-viewport" role="img" tabIndex={0} aria-label="Our services: custom software, product design, web and mobile development, commerce, automation, AI assistants, cloud and DevOps, and maintenance and product support">
+      <IconTrack icons={["code", "design", "web", "mobile", "shop"]} />
+      <IconTrack icons={["workflow", "bot", "cloud", "tools"]} reverse />
+    </div>
+  </section>;
 }
 
 function CTA() {
