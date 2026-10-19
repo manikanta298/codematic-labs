@@ -11,8 +11,8 @@ export default function CasesPage() {
       <section className="page-hero">
         <div className="mx-auto max-w-site px-page">
           <p className="eyebrow">Case studies</p>
-          <h1 className="display-title mt-6 max-w-6xl"><AnimatedWords text="Nine products. Nine stories." accentFrom={2} /></h1>
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">See how each initially developed software product was shaped around a real operational workflow, from the problem through the solution and outcome.</p>
+          <h1 className="display-title mt-6 max-w-6xl"><AnimatedWords text="Business problems. Simple software solutions." accentFrom={2} /></h1>
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">Explore nine illustrative product examples. Each explains the problem, the solution, how it works, and the intended benefit. These are not verified client results or measured ROI claims.</p>
         </div>
       </section>
       <section className="section-shell">
@@ -24,7 +24,7 @@ export default function CasesPage() {
                 <p className="product-category mt-8">{product.category}</p>
                 <h2>{product.title}</h2>
                 <p>{product.caseStudy.challenge}</p>
-                <Link to={`/products/${product.slug}`} className="product-link mt-7">Read full case study <ArrowUpRight className="size-4" /></Link>
+                <Link to={`/case-studies/${product.slug}`} className="product-link mt-7">See the problem and solution <ArrowUpRight className="size-4" /></Link>
               </article>
             ); })}
           </div>

@@ -11,12 +11,12 @@ export default function ProductsPage() {
       <section className="page-hero product-hero">
         <div className="mx-auto max-w-site px-page">
           <p className="eyebrow">Our software</p>
-          <h1 className="display-title mt-6 max-w-6xl"><AnimatedWords text="Software built around the work." accentFrom={3} /></h1>
+          <h1 className="display-title mt-6 max-w-6xl"><AnimatedWords text="Manage daily work in one place." accentFrom={3} /></h1>
           <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">
-            Nine purpose-built products for hospitality, retail, healthcare, finance, workforce, logistics and AI-enabled operations.
+            Explore nine software solutions for orders, stock, patient records, finances, tasks, deliveries and customer enquiries. Each example explains who it serves, how it works, and the benefits it is designed to provide.
           </p>
           <div className="mt-10 flex flex-wrap gap-3 text-xs font-bold uppercase tracking-[.12em] text-muted-foreground">
-            <span className="product-stat">09 products</span><span className="product-stat">09 case studies</span><span className="product-stat">Responsive web-first UX</span>
+            <span className="product-stat">09 products</span><span className="product-stat">09 workflow examples</span><span className="product-stat">Responsive web-first UX</span>
           </div>
         </div>
       </section>
@@ -50,9 +50,9 @@ export default function ProductsPage() {
 
       <section className="section-shell product-case-band">
         <div className="mx-auto grid max-w-site gap-10 px-page lg:grid-cols-[.75fr_1.25fr] lg:items-end">
-          <div data-reveal><p className="eyebrow">Built first-hand</p><h2 className="section-title mt-5">Every product has a <span className="text-gradient">story.</span></h2></div>
+          <div data-reveal><p className="eyebrow">See how it works</p><h2 className="section-title mt-5">Start with the problem. <span className="text-gradient">Follow the solution.</span></h2></div>
           <p data-reveal className="max-w-2xl text-lg leading-8 text-muted-foreground">
-            Explore the problem, workflow, product decisions and outcome behind each software system. These pages are structured as reusable case studies rather than generic feature lists.
+            Follow a simple path: the business problem, the proposed solution, the steps a user takes, and the intended benefit. These are illustrative product examples, not verified client case studies.
           </p>
         </div>
       </section>
