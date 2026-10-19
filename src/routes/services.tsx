@@ -1,4 +1,3 @@
-import { SemanticIcon } from "../components/semantic-icon";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { AnimatedWords } from "../components/motion";
@@ -25,7 +24,7 @@ export default function ServicesPage() {
                 <article key={service.slug} className="service-card" data-reveal>
                   <div className="service-card-image"><img src={service.image} alt={service.imageAlt} loading="lazy" /></div>
                   <div className="service-card-copy">
-                    <div className="flex items-start justify-between gap-4"><div className="product-icon"><SemanticIcon icon={Icon} className="size-5" /></div><span className="product-index">0{index + 1}</span></div>
+                    <div className="flex items-start justify-between gap-4"><div className="product-icon"><Icon className="size-5" /></div><span className="product-index">0{index + 1}</span></div>
                     <p className="product-category mt-7">Service</p>
                     <h2>{service.title}</h2>
                     <p className="service-description">{service.description}</p>
