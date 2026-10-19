@@ -17,7 +17,7 @@ export default function ProductDetailPage({ caseStudy = false }: { caseStudy?: b
       <section className="page-hero product-detail-hero">
         <div className="mx-auto max-w-site px-page">
           <Link to={directory} className="card-link"><ArrowLeft className="size-4" /> All {caseStudy ? "case studies" : "products"}</Link>
-          <div className="product-detail-icon mt-12"><SemanticIcon icon={Icon} className="size-8" /></div>
+          <div className="product-detail-icon mt-12"><Icon className="size-8" aria-hidden="true" /></div>
           <p className="product-category mt-8">{product.category} · Illustrative example</p>
           <h1 className="display-title mt-4 max-w-5xl">{product.title}</h1>
           <p className="mt-8 max-w-3xl text-xl leading-9 text-muted-foreground">{caseStudy ? product.caseStudy.challenge : product.description}</p>
@@ -26,7 +26,7 @@ export default function ProductDetailPage({ caseStudy = false }: { caseStudy?: b
       </section>
       <section className="section-shell">
         <div className="mx-auto grid max-w-site gap-6 px-page lg:grid-cols-2">
-          <div className="product-detail-panel" data-reveal><p className="eyebrow">What it does</p><div className="mt-7 grid gap-4">{product.features.map(feature => <div key={feature} className="detail-list-item"><SemanticIcon icon={CheckCircle2} className="size-5" /><span>{feature}</span></div>)}</div></div>
+          <div className="product-detail-panel" data-reveal><p className="eyebrow">What it does</p><div className="mt-7 grid gap-4">{product.features.map(feature => <div key={feature} className="detail-list-item"><CheckCircle2 className="size-5" aria-hidden="true" /><span>{feature}</span></div>)}</div></div>
           <div className="product-detail-panel product-detail-panel-accent" data-reveal><p className="eyebrow">Intended benefits</p><div className="mt-7 grid gap-4">{product.outcomes.map((outcome, index) => <div key={outcome} className="detail-list-item"><SemanticIcon icon={presentation.outcomes[index]!} /><span>{outcome}</span></div>)}</div></div>
         </div>
       </section>

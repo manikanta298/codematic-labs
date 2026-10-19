@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { SemanticIcon } from "../components/semantic-icon";
 import { MotionControl } from "../components/motion-control";
 import { Link } from "react-router-dom";
@@ -68,9 +68,9 @@ export default function HomePage() {
           <div className="process-grid mt-14">
             {process.map(({ number, icon: Icon, title, text, outcomes }) => (
               <article key={number} className="process-card" data-reveal>
-                <div className="flex items-start justify-between"><span className="process-number">{number}</span><SemanticIcon icon={Icon} className="size-6 text-primary-glow" /></div>
+                <div className="flex items-start justify-between"><span className="process-number">{number}</span><Icon className="size-6 text-primary-glow" /></div>
                 <h3>{title}</h3><p>{text}</p>
-                <ul>{outcomes.map((item) => <li key={item}><SemanticIcon icon={Check} className="size-4" />{item}</li>)}</ul>
+                <ul>{outcomes.map((item) => <li key={item}><Check className="size-4" />{item}</li>)}</ul>
               </article>
             ))}
           </div>
@@ -112,8 +112,8 @@ function LogoMarquee() {
             {[0, 1].map((copy) => (
               <div className="marquee-set workflow-icon-set" key={copy}>
                 {workflowIcons.map((Icon, index) => (
-                  <span className="workflow-icon" key={index}>
-                    <SemanticIcon icon={Icon} />
+                  <span className="workflow-icon" key={index} style={{ "--icon-accent": ["#fbbf24", "#a78bfa", "#fb7185", "#34d399", "#60a5fa", "#22d3ee"][index] } as CSSProperties}>
+                    <Icon size={28} strokeWidth={1.6} />
                   </span>
                 ))}
               </div>
@@ -129,7 +129,7 @@ function KineticShowcase() {
   const [paused, setPaused] = useState(false);
   const items = [...services.slice(0, 4), ...services.slice(0, 4)];
   const reverse = [...services.slice(2, 6), ...services.slice(2, 6)];
-  return <section className="loop-section" data-motion-paused={paused} aria-label="Codematic Labs capabilities in motion"><div className="loop-heading mx-auto max-w-site px-page" data-reveal><p className="index-label"><span>Built to move</span> One connected team</p><p>From understanding your workflow to designing, building and supporting the solution.</p><MotionControl paused={paused} onToggle={() => setPaused(!paused)} controls="capability-loop" /></div><div className="loop-viewport" id="capability-loop"><div className="loop-track">{items.map(({ icon: Icon, title }, index) => <div className="loop-card" aria-hidden={index >= 4 ? true : undefined} key={`${title}-forward-${index}`}><SemanticIcon icon={Icon} className="size-5" /><span>{title}</span><small>Codematic Labs</small></div>)}</div><div className="loop-track loop-track-reverse">{reverse.map(({ icon: Icon, title }, index) => <div className="loop-card loop-card-muted" aria-hidden={index >= 4 ? true : undefined} key={`${title}-reverse-${index}`}><SemanticIcon icon={Icon} className="size-5" /><span>{title}</span><small>From idea to launch</small></div>)}</div></div></section>;
+  return <section className="loop-section" data-motion-paused={paused} aria-label="Codematic Labs capabilities in motion"><div className="loop-heading mx-auto max-w-site px-page" data-reveal><p className="index-label"><span>Built to move</span> One connected team</p><p>From understanding your workflow to designing, building and supporting the solution.</p><MotionControl paused={paused} onToggle={() => setPaused(!paused)} controls="capability-loop" /></div><div className="loop-viewport" id="capability-loop"><div className="loop-track">{items.map(({ icon: Icon, title }, index) => <div className="loop-card" aria-hidden={index >= 4 ? true : undefined} key={`${title}-forward-${index}`}><Icon className="size-5" /><span>{title}</span><small>Codematic Labs</small></div>)}</div><div className="loop-track loop-track-reverse">{reverse.map(({ icon: Icon, title }, index) => <div className="loop-card loop-card-muted" aria-hidden={index >= 4 ? true : undefined} key={`${title}-reverse-${index}`}><Icon className="size-5" /><span>{title}</span><small>From idea to launch</small></div>)}</div></div></section>;
 }
 
 function CTA() {
