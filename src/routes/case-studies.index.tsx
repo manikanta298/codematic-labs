@@ -11,9 +11,9 @@ export default function CasesPage() {
     <main id="main-content" tabIndex={-1}>
       <section className="page-hero">
         <div className="mx-auto max-w-site px-page">
-          <p className="eyebrow">Case studies</p>
+          <p className="eyebrow">Solution examples</p>
           <h1 className="display-title mt-6 max-w-6xl"><AnimatedWords text="Business problems. Simple software solutions." accentFrom={2} /></h1>
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">Explore nine illustrative product examples. Each explains the problem, the solution, how it works, and the intended benefit. These are not verified client results or measured ROI claims.</p>
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">See nine examples of solutions we can build. Each explains a business problem, a possible solution and how it could work. These are illustrative examples, not completed client projects or measured results.</p>
         </div>
       </section>
       <section className="section-shell">

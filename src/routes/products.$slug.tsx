@@ -9,16 +9,16 @@ export default function ProductDetailPage({ caseStudy = false }: { caseStudy?: b
   const { slug } = useParams();
   const product = products.find(item => item.slug === slug);
   const directory = caseStudy ? "/case-studies" : "/products";
-  if (!product) return <main id="main-content" tabIndex={-1} className="page-hero"><div className="mx-auto max-w-site px-page"><p className="eyebrow">{caseStudy ? "Case study" : "Product"} not found</p><h1 className="display-title mt-6">That {caseStudy ? "case study" : "product"} isn’t here.</h1><Link to={directory} className="button-outline mt-10">Back to {caseStudy ? "case studies" : "products"}</Link></div></main>;
+  if (!product) return <main id="main-content" tabIndex={-1} className="page-hero"><div className="mx-auto max-w-site px-page"><p className="eyebrow">{caseStudy ? "Example" : "Solution"} not found</p><h1 className="display-title mt-6">That {caseStudy ? "example" : "solution"} isn’t here.</h1><Link to={directory} className="button-outline mt-10">Back to {caseStudy ? "examples" : "solutions"}</Link></div></main>;
   const Icon = product.icon;
   const presentation = productPresentation[product.slug]!;
   return (
     <main id="main-content" tabIndex={-1}>
       <section className="page-hero product-detail-hero">
         <div className="mx-auto max-w-site px-page">
-          <Link to={directory} className="card-link"><ArrowLeft className="size-4" /> All {caseStudy ? "case studies" : "products"}</Link>
+          <Link to={directory} className="card-link"><ArrowLeft className="size-4" /> All {caseStudy ? "examples" : "solutions"}</Link>
           <div className="product-detail-icon mt-12"><SemanticIcon icon={Icon} className="size-8" /></div>
-          <p className="product-category mt-8">{product.category} · Illustrative example</p>
+          <p className="product-category mt-8">{product.category} · Illustrative solution we can build</p>
           <h1 className="display-title mt-4 max-w-5xl">{product.title}</h1>
           <p className="mt-8 max-w-3xl text-xl leading-9 text-muted-foreground">{caseStudy ? product.caseStudy.challenge : product.description}</p>
           <p className="mt-6 text-sm font-bold text-primary-glow">{product.audience}</p>
@@ -26,14 +26,14 @@ export default function ProductDetailPage({ caseStudy = false }: { caseStudy?: b
       </section>
       <section className="section-shell">
         <div className="mx-auto grid max-w-site gap-6 px-page lg:grid-cols-2">
-          <div className="product-detail-panel" data-reveal><p className="eyebrow">What it does</p><div className="mt-7 grid gap-4">{product.features.map(feature => <div key={feature} className="detail-list-item"><SemanticIcon icon={CheckCircle2} className="size-5" /><span>{feature}</span></div>)}</div></div>
-          <div className="product-detail-panel product-detail-panel-accent" data-reveal><p className="eyebrow">Intended benefits</p><div className="mt-7 grid gap-4">{product.outcomes.map((outcome, index) => <div key={outcome} className="detail-list-item"><SemanticIcon icon={presentation.outcomes[index]!} /><span>{outcome}</span></div>)}</div></div>
+          <div className="product-detail-panel" data-reveal><p className="eyebrow">What we can build</p><div className="mt-7 grid gap-4">{product.features.map(feature => <div key={feature} className="detail-list-item"><SemanticIcon icon={CheckCircle2} className="size-5" /><span>{feature}</span></div>)}</div></div>
+          <div className="product-detail-panel product-detail-panel-accent" data-reveal><p className="eyebrow">What it could help you do</p><div className="mt-7 grid gap-4">{product.outcomes.map((outcome, index) => <div key={outcome} className="detail-list-item"><SemanticIcon icon={presentation.outcomes[index]!} /><span>{outcome}</span></div>)}</div></div>
         </div>
       </section>
       <section className="section-shell border-y border-border bg-surface">
         <div className="mx-auto max-w-site px-page">
           <div className="max-w-3xl" data-reveal>
-            <p className="eyebrow">{caseStudy ? "Illustrative case study · Intended benefits, not measured client results" : "Product workflow · Illustrative example"}</p>
+            <p className="eyebrow">{caseStudy ? "Illustrative solution · Intended benefits, not measured client results" : "Example workflow · A solution we can build"}</p>
             <h2 className="section-title mt-5">{caseStudy ? <>The problem. The solution. <span className="text-gradient">How it works.</span></> : <>A clear workflow for <span className="text-gradient">daily use.</span></>}</h2>
           </div>
           <div className="case-study-grid mt-16">
@@ -46,7 +46,7 @@ export default function ProductDetailPage({ caseStudy = false }: { caseStudy?: b
             {caseStudy && <div className="case-study-result case-study-wide" data-reveal><span className="icon-heading"><SemanticIcon icon={Target} />05 / Intended result</span><p>{product.caseStudy.result}</p></div>}
           </div>
           <div className="related-links" data-reveal>
-            <Link to={caseStudy ? `/products/${product.slug}` : `/case-studies/${product.slug}`} className="card-link">{caseStudy ? "Explore product features" : "Read the illustrative case study"}<ArrowUpRight className="size-4" /></Link>
+            <Link to={caseStudy ? `/products/${product.slug}` : `/case-studies/${product.slug}`} className="card-link">{caseStudy ? "Explore solution features" : "See the example problem and solution"}<ArrowUpRight className="size-4" /></Link>
             <Link to={`/services/${presentation.serviceSlug}`} className="card-link">Explore the related service<ArrowUpRight className="size-4" /></Link>
           </div>
         </div>

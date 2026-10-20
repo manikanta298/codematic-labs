@@ -13,7 +13,7 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-site px-page">
           <p className="eyebrow">Services</p>
           <h1 className="display-title mt-6 max-w-6xl"><AnimatedWords text="Build better software. Simplify daily work." accentFrom={4} /></h1>
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">Build a new product, improve an existing system, or automate repetitive tasks. Explore nine services, what each includes, and how we take it from first discussion to launch.</p>
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">Build new software, improve an existing system or automate a repeated task. See what each service includes and how we work with you from the first conversation to launch.</p>
         </div>
       </section>
       <section className="section-shell">
@@ -38,7 +38,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-      <section className="section-shell product-case-band"><div className="mx-auto max-w-site px-page"><div className="rounded-[6px] border border-border bg-card p-8 sm:p-12"><p className="eyebrow">Flexible engagement</p><h2 className="section-title mt-5 max-w-4xl">Start with one task or plan <span className="text-gradient">the whole product.</span></h2><div className="mt-8 flex flex-wrap gap-3"><Link to="/products" className="button-outline">Explore software <ArrowUpRight className="size-4" /></Link><Link to="/contact" className="button-solid">Talk to our team <ArrowUpRight className="size-4" /></Link></div></div></div></section>
+      <section className="section-shell product-case-band"><div className="mx-auto max-w-site px-page"><div className="rounded-[6px] border border-border bg-card p-8 sm:p-12"><p className="eyebrow">Choose where to start</p><h2 className="section-title mt-5 max-w-4xl">Start with one task or plan <span className="text-gradient">the whole product.</span></h2><div className="mt-8 flex flex-wrap gap-3"><Link to="/products" className="button-outline">Explore software <ArrowUpRight className="size-4" /></Link><Link to="/contact" className="button-solid">Talk to our team <ArrowUpRight className="size-4" /></Link></div></div></div></section>
     </main>
   );
 }
