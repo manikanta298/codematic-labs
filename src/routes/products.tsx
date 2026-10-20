@@ -1,3 +1,4 @@
+import { SemanticIcon } from "../components/semantic-icon";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { AnimatedWords } from "../components/motion";
@@ -29,7 +30,7 @@ export default function ProductsPage() {
               return (
                 <article key={product.slug} className="product-card" data-reveal>
                   <div className="product-card-top">
-                    <div className="product-icon"><Icon className="size-6" /></div>
+                    <div className="product-icon"><SemanticIcon icon={Icon} className="size-6" /></div>
                     <span className="product-index">0{index + 1}</span>
                   </div>
                   <span className="product-category">{product.category}</span>

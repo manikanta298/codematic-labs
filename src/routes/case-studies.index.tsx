@@ -1,3 +1,4 @@
+import { SemanticIcon } from "../components/semantic-icon";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { AnimatedWords } from "../components/motion";
@@ -20,7 +21,7 @@ export default function CasesPage() {
           <div className="case-index-grid">
             {products.map((product, index) => { const Icon = product.icon; return (
               <article key={product.slug} className="case-index-card" data-reveal>
-                <div className="flex items-center justify-between"><div className="product-icon"><Icon className="size-5" /></div><span className="product-index">0{index + 1}</span></div>
+                <div className="flex items-center justify-between"><div className="product-icon"><SemanticIcon icon={Icon} className="size-5" /></div><span className="product-index">0{index + 1}</span></div>
                 <p className="product-category mt-8">{product.category}</p>
                 <h2>{product.title}</h2>
                 <p>{product.caseStudy.challenge}</p>

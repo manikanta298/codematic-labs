@@ -1,11 +1,12 @@
 import { SemanticIcon } from "../components/semantic-icon";
-import { LoopIllustration, type LoopIconKind } from "../components/loop-illustration";
+import { technologyLogos } from "../lib/technology-logos";
+import { GradientArtwork, type GradientIconKind } from "../components/gradient-icon";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Check, MoveRight } from "lucide-react";
 import heroImage from "../assets/hero.jpg";
 import { AnimatedWords } from "../components/motion";
 import { useReveal } from "../hooks/use-reveal";
-import { process, projects, services } from "../lib/site-data";
+import { process, projects, services, technologyGroups } from "../lib/site-data";
 
 export default function HomePage() {
   useReveal();
@@ -67,9 +68,9 @@ export default function HomePage() {
           <div className="process-grid mt-14">
             {process.map(({ number, icon: Icon, title, text, outcomes }) => (
               <article key={number} className="process-card" data-reveal>
-                <div className="flex items-start justify-between"><span className="process-number">{number}</span><Icon className="size-6 text-primary-glow" /></div>
+                <div className="flex items-start justify-between"><span className="process-number">{number}</span><SemanticIcon icon={Icon} className="size-6 text-primary-glow" /></div>
                 <h3>{title}</h3><p>{text}</p>
-                <ul>{outcomes.map((item) => <li key={item}><Check className="size-4" />{item}</li>)}</ul>
+                <ul>{outcomes.map((item) => <li key={item}><SemanticIcon icon={Check} className="size-4" />{item}</li>)}</ul>
               </article>
             ))}
           </div>
@@ -99,10 +100,34 @@ export default function HomePage() {
   );
 }
 
-function IconTrack({ icons, reverse = false }: { icons: readonly LoopIconKind[]; reverse?: boolean }) {
+const loopTechnologies = technologyGroups.flatMap(group => group.items.map(({ name }) => ({ name, logo: technologyLogos[name] })));
+const technologyDescription = loopTechnologies.map(({ name }) => name).join(", ");
+
+function TechnologyTrack({ reverse = false }: { reverse?: boolean }) {
   return <div className={`custom-icon-track${reverse ? " custom-icon-track-reverse" : ""}`} aria-hidden="true">
     {[0, 1].map(copy => <div className="custom-icon-set" data-loop-copy={copy} key={copy}>
-      {icons.map((kind, index) => <span className="custom-icon-tile" key={`${kind}-${index}`}><LoopIllustration kind={kind} /></span>)}
+      {loopTechnologies.map(({ name, logo }) => <span className="custom-icon-tile brand-loop-tile" key={name} title={name}><img src={`/technology/${logo}.svg`} alt="" width={32} height={32} decoding="async" /></span>)}
+    </div>)}
+  </div>;
+}
+
+const industryWorkflows: readonly { kind: GradientIconKind; label: string }[] = [
+  { kind: "hospital", label: "Hospital management" },
+  { kind: "pos", label: "POS billing" },
+  { kind: "food", label: "Restaurant operations" },
+  { kind: "box", label: "Stock and inventory" },
+  { kind: "wallet", label: "Daily financial records" },
+  { kind: "receipt", label: "Cheque and payment records" },
+  { kind: "gem", label: "Jewellery management" },
+  { kind: "team", label: "Employee and task management" },
+  { kind: "truck", label: "Logistics and deliveries" },
+  { kind: "bot", label: "Business chatbots" },
+];
+
+function IndustryTrack() {
+  return <div className="custom-icon-track" aria-hidden="true">
+    {[0, 1].map(copy => <div className="custom-icon-set" data-loop-copy={copy} key={copy}>
+      {industryWorkflows.map(({ kind, label }) => <span className="custom-icon-tile industry-loop-tile" key={kind} title={label}><GradientArtwork kind={kind} /></span>)}
     </div>)}
   </div>;
 }
@@ -111,8 +136,8 @@ function LogoMarquee() {
   return <section className="trust-band custom-workflow-band">
     <div className="mx-auto grid max-w-site gap-7 px-page md:grid-cols-[210px_1fr] md:items-center">
       <p className="index-label"><span>Built for</span> Business workflows</p>
-      <div id="business-workflow-loop" className="custom-icon-viewport" role="img" tabIndex={0} aria-label="Connected business workflows: orders, shopping, care, payments, teams and deliveries">
-        <IconTrack icons={["food", "shop", "health", "wallet", "team", "truck"]} />
+      <div id="business-workflow-loop" className="custom-icon-viewport" role="img" tabIndex={0} aria-label={`Business workflows: ${industryWorkflows.map(({ label }) => label).join(", ")}`}>
+        <IndustryTrack />
       </div>
     </div>
   </section>;
@@ -124,9 +149,8 @@ function KineticShowcase() {
       <p className="index-label"><span>Built to move</span> One connected team</p>
       <p>From understanding your workflow to designing, building and supporting the solution.</p>
     </div>
-    <div id="capability-loop" className="custom-icon-viewport" role="img" tabIndex={0} aria-label="Our services: custom software, product design, web and mobile development, commerce, automation, AI assistants, cloud and DevOps, and maintenance and product support">
-      <IconTrack icons={["code", "design", "web", "mobile", "shop"]} />
-      <IconTrack icons={["workflow", "bot", "cloud", "tools"]} reverse />
+    <div id="capability-loop" className="custom-icon-viewport" role="img" tabIndex={0} aria-label={`Our connected technology stack: ${technologyDescription}`}>
+      <TechnologyTrack reverse />
     </div>
   </section>;
 }
