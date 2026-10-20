@@ -1,5 +1,6 @@
 import { SemanticIcon } from "../components/semantic-icon";
 import { technologyLogos } from "../lib/technology-logos";
+import { GradientArtwork, type GradientIconKind } from "../components/gradient-icon";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Check, MoveRight } from "lucide-react";
 import heroImage from "../assets/hero.jpg";
@@ -110,12 +111,33 @@ function TechnologyTrack({ reverse = false }: { reverse?: boolean }) {
   </div>;
 }
 
+const industryWorkflows: readonly { kind: GradientIconKind; label: string }[] = [
+  { kind: "hospital", label: "Hospital management" },
+  { kind: "pos", label: "POS billing" },
+  { kind: "food", label: "Restaurant operations" },
+  { kind: "box", label: "Stock and inventory" },
+  { kind: "wallet", label: "Daily financial records" },
+  { kind: "receipt", label: "Cheque and payment records" },
+  { kind: "gem", label: "Jewellery management" },
+  { kind: "team", label: "Employee and task management" },
+  { kind: "truck", label: "Logistics and deliveries" },
+  { kind: "bot", label: "Business chatbots" },
+];
+
+function IndustryTrack() {
+  return <div className="custom-icon-track" aria-hidden="true">
+    {[0, 1].map(copy => <div className="custom-icon-set" data-loop-copy={copy} key={copy}>
+      {industryWorkflows.map(({ kind, label }) => <span className="custom-icon-tile industry-loop-tile" key={kind} title={label}><GradientArtwork kind={kind} /></span>)}
+    </div>)}
+  </div>;
+}
+
 function LogoMarquee() {
   return <section className="trust-band custom-workflow-band">
     <div className="mx-auto grid max-w-site gap-7 px-page md:grid-cols-[210px_1fr] md:items-center">
       <p className="index-label"><span>Built for</span> Business workflows</p>
-      <div id="business-workflow-loop" className="custom-icon-viewport" role="img" tabIndex={0} aria-label={`Technologies for business workflows: ${technologyDescription}`}>
-        <TechnologyTrack />
+      <div id="business-workflow-loop" className="custom-icon-viewport" role="img" tabIndex={0} aria-label={`Business workflows: ${industryWorkflows.map(({ label }) => label).join(", ")}`}>
+        <IndustryTrack />
       </div>
     </div>
   </section>;

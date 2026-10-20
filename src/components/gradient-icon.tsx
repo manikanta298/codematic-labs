@@ -3,6 +3,8 @@ import { useId, type ReactNode, type CSSProperties } from "react";
 
 // One custom gradient illustration family; Lucide references are semantic keys only.
 const artwork = {
+  hospital: <><path className="vi-back" d="M7 9h18v22H7V9Z"/><path className="vi-front" d="M1 17h6v14H1Zm24 0h6v14h-6Z"/><rect className="vi-front" x="10" y="1" width="12" height="12" rx="3"/><path className="vi-shine" d="M16 4v6m-3-3h6M11 17h2m6 0h2m-10 5h2m6 0h2"/><path className="vi-line" d="M14 31v-6h4v6"/></>,
+  pos: <><rect className="vi-back" x="2" y="3" width="22" height="16" rx="3"/><path className="vi-front" d="M10 19h6v6h-6Zm-6 6h18v5H4Z"/><path className="vi-shine" d="M7 9h8m-8 4h4"/><path className="vi-front" d="M22 11h9v18l-3-2-3 2-3-2V11Z"/><path className="vi-line" d="M25 15h3m-3 4h3m-3 4h2"/></>,
   food: <><path className="vi-back" d="M8 14a6 6 0 1 1 1-11 8 8 0 0 1 14 0 6 6 0 1 1 1 11v15H8V14Z"/><path className="vi-front" d="M8 22h16v7H8Z"/><path className="vi-shine" d="M12 15v5m8-5v5"/></>,
   code: <><rect className="vi-back" x="4" y="5" width="24" height="20" rx="4"/><path className="vi-line" d="m12 13-4 4 4 4m8-8 4 4-4 4m-3-10-2 16"/><path className="vi-shine" d="M8 9h7"/></>,
   design: <><rect className="vi-back" x="4" y="8" width="21" height="21" rx="5"/><path className="vi-front" d="m11 20 2-7L24 2l6 6-11 11-8 1Z"/><path className="vi-line" d="m21 5 6 6M9 25h11"/></>,
@@ -42,6 +44,7 @@ const artwork = {
 
 type Kind = keyof typeof artwork;
 const families: Record<Kind, string> = {
+  hospital: "Hospital", pos: "MonitorCheck",
   food: "ChefHat UtensilsCrossed",
   code: "CodeXml Code2", design: "Sparkles PenTool PencilRuler MousePointer2", web: "Globe Globe2 Earth",
   mobile: "Smartphone", shop: "ShoppingCart ShoppingBag", workflow: "Workflow GitBranch Plug Layers Layers3 Settings2 RefreshCw",
@@ -67,6 +70,7 @@ const palettes = {
   blue: ["#a4c8ff", "#4f6fe8", "#edf5ff"],
 } as const;
 const paletteByKind: Partial<Record<Kind, keyof typeof palettes>> = {
+  hospital: "rose", pos: "blue",
   food: "amber", shop: "violet", health: "rose", wallet: "mint", team: "blue", truck: "ocean",
   code: "blue", design: "violet", web: "ocean", mobile: "rose", workflow: "mint", bot: "violet",
   cloud: "blue", tools: "amber", gem: "violet", receipt: "amber", tasks: "mint", compass: "ocean",
