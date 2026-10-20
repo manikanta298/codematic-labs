@@ -3,36 +3,12 @@ import { ArrowUpRight } from "lucide-react";
 import { AnimatedWords } from "../components/motion";
 import { useReveal } from "../hooks/use-reveal";
 import { technologyGroups } from "../lib/site-data";
+import { technologyLogos } from "../lib/technology-logos";
 
 // A representative tool from each group, using the same unmodified brand assets.
 const categoryLogos = ["react", "nodejs", "postgresql", "docker"];
 
-const technologyLogos: Record<string, string> = {
-  React: "react",
-  "Next.js": "nextjs",
-  TypeScript: "typescript",
-  "Tailwind CSS": "tailwindcss",
-  "React Native": "react",
-  "Node.js": "nodejs",
-  Express: "express",
-  NestJS: "nestjs",
-  "REST & GraphQL": "graphql",
-  PostgreSQL: "postgresql",
-  MongoDB: "mongodb",
-  Redis: "redis",
-  Firebase: "firebase",
-  AWS: "amazonwebservices",
-  Vercel: "vercel",
-  Docker: "docker",
-  "GitHub Actions": "githubactions",
-  Cloudflare: "cloudflare",
-  "Vue.js": "vuejs",
-  Python: "python",
-  Django: "django",
-  MySQL: "mysql",
-  SQLite: "sqlite",
-  Kubernetes: "kubernetes",
-};
+
 
 export default function TechPage() {
   useReveal();
