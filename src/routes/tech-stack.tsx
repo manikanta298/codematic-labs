@@ -18,7 +18,7 @@ export default function TechPage() {
         <div className="mx-auto max-w-site px-page">
           <p className="eyebrow">Tech stack</p>
           <h1 className="display-title mt-6 max-w-6xl"><AnimatedWords text="The right tools for your software." accentFrom={2} /></h1>
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">Your workflow comes first. We choose the interface, server, database and hosting tools to fit your users, integrations, budget and future maintenance needs.</p>
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">We choose technology around your daily work, your users, your budget and the tools you already use.</p>
         </div>
       </section>
       <section className="section-shell tech-stack-section">
@@ -46,8 +46,8 @@ export default function TechPage() {
             ))}
           </div>
           <div className="tech-stack-cta" data-reveal>
-            <p>Tell us what you need to build and which systems it must connect to.</p>
-            <Link to="/contact" className="button-solid">Discuss your build <ArrowUpRight className="size-4" /></Link>
+            <p>Tell us what you want to build and which tools it needs to connect to.</p>
+            <Link to="/contact" className="button-solid">Discuss your project <ArrowUpRight className="size-4" /></Link>
           </div>
         </div>
       </section>

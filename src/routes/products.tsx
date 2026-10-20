@@ -11,13 +11,13 @@ export default function ProductsPage() {
     <main id="main-content" tabIndex={-1}>
       <section className="page-hero product-hero">
         <div className="mx-auto max-w-site px-page">
-          <p className="eyebrow">Our software</p>
+          <p className="eyebrow">Solutions we can build</p>
           <h1 className="display-title mt-6 max-w-6xl"><AnimatedWords text="Manage daily work in one place." accentFrom={3} /></h1>
           <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground">
-            Explore nine software solutions for orders, stock, patient records, finances, tasks, deliveries and customer enquiries. Each example explains who it serves, how it works, and the benefits it is designed to provide.
+            Explore examples of software we can build for orders, stock, patient records, finances, teams, deliveries and enquiries. Each shows who it could help and how it could work.
           </p>
           <div className="mt-10 flex flex-wrap gap-3 text-xs font-bold uppercase tracking-[.12em] text-muted-foreground">
-            <span className="product-stat">09 products</span><span className="product-stat">09 workflow examples</span><span className="product-stat">Responsive web-first UX</span>
+            <span className="product-stat">09 solution examples</span><span className="product-stat">09 example workflows</span><span className="product-stat">Designed for desktop and mobile</span>
           </div>
         </div>
       </section>
@@ -40,7 +40,7 @@ export default function ProductsPage() {
                     {product.features.slice(0, 3).map((feature) => <span key={feature}>{feature}</span>)}
                   </div>
                   <Link to={`/products/${product.slug}`} className="product-link">
-                    Explore product <ArrowUpRight className="size-4" />
+                    Explore solution <ArrowUpRight className="size-4" />
                   </Link>
                 </article>
               );
@@ -53,7 +53,7 @@ export default function ProductsPage() {
         <div className="mx-auto grid max-w-site gap-10 px-page lg:grid-cols-[.75fr_1.25fr] lg:items-end">
           <div data-reveal><p className="eyebrow">See how it works</p><h2 className="section-title mt-5">Start with the problem. <span className="text-gradient">Follow the solution.</span></h2></div>
           <p data-reveal className="max-w-2xl text-lg leading-8 text-muted-foreground">
-            Follow a simple path: the business problem, the proposed solution, the steps a user takes, and the intended benefit. These are illustrative product examples, not verified client case studies.
+            See the problem a solution could address, the steps a user would take and the benefits it is designed to provide. These examples show what we can build.
           </p>
         </div>
       </section>

@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, Search, PencilRuler, Rocket } from "lucide-react";
 import { useReveal } from "../hooks/use-reveal";
 import { SemanticIcon } from "../components/semantic-icon";
-import { services, servicePresentation } from "../lib/site-data";
+import { services, servicePresentation, serviceQuestions } from "../lib/site-data";
 
 export default function ServiceDetailPage() {
   useReveal();
@@ -35,9 +35,9 @@ export default function ServiceDetailPage() {
         </div>
       </section>
       <section className="section-shell service-faq"><div className="mx-auto max-w-site px-page"><p className="eyebrow">Before we begin</p><h2 className="section-title mt-5">Questions about <span className="text-gradient">this service.</span></h2><div className="faq-list">
-        <details><summary>When is {service.title.toLowerCase()} useful?</summary><p>{service.description} Share your current workflow so we can assess whether this is the right fit.</p></details>
-        <details><summary>What should I share for an initial discussion?</summary><p>Tell us who will use the solution, what they do now, the tools involved and your intended result. We clarify scope and constraints before agreeing a timeline or cost.</p></details>
-        <details><summary>What does the planned handoff include?</summary><p>Typical deliverables include {service.deliverables.join(", ").toLowerCase()}. The exact scope, responsibilities and any ongoing support are agreed for your project.</p></details>
+        <details><summary>{serviceQuestions[service.slug]!.question}</summary><p>{serviceQuestions[service.slug]!.answer}</p></details>
+        <details><summary>What should I share for an initial discussion?</summary><p>Tell us who will use it, what they do now, their current tools and what needs to improve. We agree on what the work includes before discussing a timeline and cost.</p></details>
+        <details><summary>What will we receive?</summary><p>The work can include {service.deliverables.join(", ").toLowerCase()}. We agree on the exact items and any ongoing support before we begin.</p></details>
       </div></div></section>
       <section className="section-shell"><div className="mx-auto flex max-w-site flex-col items-start justify-between gap-8 px-page md:flex-row md:items-end"><div><p className="eyebrow">Let’s work together</p><h2 className="section-title mt-5">Tell us what you need to <span className="text-gradient">build or improve.</span></h2></div><Link to="/contact" className="button-solid">Talk to our team <ArrowUpRight className="size-4" /></Link></div></section>
     </main>
