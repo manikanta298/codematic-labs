@@ -100,57 +100,66 @@ export default function HomePage() {
   );
 }
 
-const loopTechnologies = technologyGroups.flatMap(group => group.items.map(({ name }) => ({ name, logo: technologyLogos[name] })));
-const technologyDescription = loopTechnologies.map(({ name }) => name).join(", ");
+const loopTechnologies = technologyGroups.flatMap(group => group.items.map(({ name }) => ({ name, logo: technologyLogos[name], category: group.title })));
 
-function TechnologyTrack({ reverse = false }: { reverse?: boolean }) {
-  return <div className={`custom-icon-track${reverse ? " custom-icon-track-reverse" : ""}`} aria-hidden="true">
-    {[0, 1].map(copy => <div className="custom-icon-set" data-loop-copy={copy} key={copy}>
-      {loopTechnologies.map(({ name, logo }) => <span className="custom-icon-tile brand-loop-tile" key={name} title={name}><img src={`/technology/${logo}.svg`} alt="" width={32} height={32} decoding="async" /></span>)}
+function TechnologyTrack() {
+  return <div className="custom-icon-track custom-icon-track-reverse">
+    {[0, 1].map(copy => <div className="custom-icon-set" data-loop-copy={copy} key={copy} role="list" aria-hidden={copy === 1 ? true : undefined}>
+      {loopTechnologies.map(({ name, logo, category }) => <div className="technology-showcase-card" key={name} role="listitem">
+        <span className="technology-showcase-logo"><img src={`/technology/${logo}.svg`} alt="" width={36} height={36} decoding="async" /></span>
+        <div><span className="technology-showcase-category">{category}</span><p>{name}</p></div>
+      </div>)}
     </div>)}
   </div>;
 }
 
-const industryWorkflows: readonly { kind: GradientIconKind; label: string }[] = [
-  { kind: "hospital", label: "Hospital management" },
-  { kind: "pos", label: "POS billing" },
-  { kind: "food", label: "Restaurant operations" },
-  { kind: "box", label: "Stock and inventory" },
-  { kind: "wallet", label: "Daily financial records" },
-  { kind: "receipt", label: "Cheque and payment records" },
-  { kind: "gem", label: "Jewellery management" },
-  { kind: "team", label: "Employee and task management" },
-  { kind: "truck", label: "Logistics and deliveries" },
-  { kind: "bot", label: "Business chatbots" },
+const industryWorkflows: readonly { kind: GradientIconKind; label: string; description: string; accent: string }[] = [
+  { kind: "hospital", label: "Healthcare", description: "Connect patient visits, records and billing.", accent: "rose" },
+  { kind: "pos", label: "POS & billing", description: "Bring orders, payments and daily sales together.", accent: "blue" },
+  { kind: "food", label: "Restaurants", description: "Keep tables, kitchen tickets and bills in sync.", accent: "amber" },
+  { kind: "box", label: "Retail & inventory", description: "Follow purchases, stock levels and every sale.", accent: "amber" },
+  { kind: "wallet", label: "Daily finances", description: "Record income, expenses and account balances.", accent: "mint" },
+  { kind: "receipt", label: "Cheque tracking", description: "Keep due dates and payment status in view.", accent: "amber" },
+  { kind: "gem", label: "Jewellery", description: "Link item details, customer records and sales.", accent: "violet" },
+  { kind: "team", label: "People & tasks", description: "Give every task an owner and a clear next step.", accent: "blue" },
+  { kind: "logistics", label: "Logistics", description: "Plan dispatch and follow each delivery.", accent: "cyan" },
+  { kind: "bot", label: "Customer support", description: "Answer common questions and capture enquiries.", accent: "violet" },
 ];
 
 function IndustryTrack() {
-  return <div className="custom-icon-track" aria-hidden="true">
-    {[0, 1].map(copy => <div className="custom-icon-set" data-loop-copy={copy} key={copy}>
-      {industryWorkflows.map(({ kind, label }) => <span className="custom-icon-tile industry-loop-tile" key={kind} title={label}><GradientArtwork kind={kind} /></span>)}
+  return <div className="custom-icon-track">
+    {[0, 1].map(copy => <div className="custom-icon-set" data-loop-copy={copy} key={copy} role="list" aria-hidden={copy === 1 ? true : undefined}>
+      {industryWorkflows.map(({ kind, label, description, accent }, index) => <article className={`workflow-showcase-card workflow-accent-${accent}`} key={kind} role="listitem">
+        <div className="workflow-card-top"><span className="workflow-brand-mark"><GradientArtwork kind={kind} /></span><span className="workflow-card-detail" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span></div>
+        <h3>{label}</h3><p>{description}</p>
+      </article>)}
     </div>)}
   </div>;
 }
 
 function LogoMarquee() {
-  return <section className="trust-band custom-workflow-band">
-    <div className="mx-auto grid max-w-site gap-7 px-page md:grid-cols-[210px_1fr] md:items-center">
-      <p className="index-label"><span>Built for</span> Business workflows</p>
-      <div id="business-workflow-loop" className="custom-icon-viewport" role="img" tabIndex={0} aria-label={`Business workflows: ${industryWorkflows.map(({ label }) => label).join(", ")}`}>
-        <IndustryTrack />
+  return <section className="workflow-showcase" aria-labelledby="workflow-showcase-title">
+    <div className="mx-auto max-w-site px-page">
+      <div className="showcase-heading">
+        <div><p className="index-label"><span>Built for</span> Business workflows</p><h2 id="workflow-showcase-title" className="showcase-title">Built around the way <span className="text-gradient">your business works.</span></h2></div>
+        <p>From patient records to the next delivery, we can build software that brings your daily tasks into one clear flow.</p>
       </div>
+      <div id="business-workflow-loop" className="custom-icon-viewport" role="region" tabIndex={0} aria-label="Business workflow solution ideas"><IndustryTrack /></div>
+      <div className="showcase-footer"><p>Illustrative solutions, shaped around your team.</p><Link to="/products" className="card-link">Explore solutions we can build <ArrowUpRight className="size-4" /></Link></div>
     </div>
   </section>;
 }
 
 function KineticShowcase() {
-  return <section className="loop-section custom-service-loop" aria-label="Codematic Labs capabilities in motion">
-    <div className="loop-heading mx-auto max-w-site px-page" data-reveal>
-      <p className="index-label"><span>Built to move</span> One connected team</p>
-      <p>From understanding your workflow to designing, building and supporting the solution.</p>
-    </div>
-    <div id="capability-loop" className="custom-icon-viewport" role="img" tabIndex={0} aria-label={`Our connected technology stack: ${technologyDescription}`}>
-      <TechnologyTrack reverse />
+  return <section className="team-showcase" aria-labelledby="team-showcase-title">
+    <div className="mx-auto max-w-site px-page">
+      <div className="showcase-heading">
+        <div><p className="index-label"><span>Built to move</span> One connected team</p><h2 id="team-showcase-title" className="showcase-title">The right tools. <span className="text-gradient">Working together.</span></h2></div>
+        <p>We bring design, development, data and hosting together. One team chooses the tools around what your software needs to do.</p>
+      </div>
+      <div className="technology-areas" aria-label="Technology areas"><span>Interfaces</span><i aria-hidden="true"/><span>Apps & services</span><i aria-hidden="true"/><span>Data</span><i aria-hidden="true"/><span>Hosting & releases</span></div>
+      <div id="capability-loop" className="custom-icon-viewport" role="region" tabIndex={0} aria-label="Technologies we can build with"><TechnologyTrack /></div>
+      <div className="showcase-footer"><p>Original technology brands. Tools selected for your project.</p><Link to="/tech-stack" className="card-link">Explore our tech stack <ArrowUpRight className="size-4" /></Link></div>
     </div>
   </section>;
 }
