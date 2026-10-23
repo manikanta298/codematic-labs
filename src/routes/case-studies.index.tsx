@@ -25,7 +25,7 @@ export default function CasesPage() {
                 <p className="product-category mt-8">{product.category}</p>
                 <h2>{product.title}</h2>
                 <p>{product.caseStudy.challenge}</p>
-                <Link to={`/case-studies/${product.slug}`} className="product-link mt-7">See the problem and solution <ArrowUpRight className="size-4" /></Link>
+                <Link to={`/explanation/${product.slug}`} className="product-link mt-7">See the problem and solution <ArrowUpRight className="size-4" /></Link>
               </article>
             ); })}
           </div>

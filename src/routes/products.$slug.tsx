@@ -8,7 +8,7 @@ export default function ProductDetailPage({ caseStudy = false }: { caseStudy?: b
   useReveal();
   const { slug } = useParams();
   const product = products.find(item => item.slug === slug);
-  const directory = caseStudy ? "/case-studies" : "/products";
+  const directory = caseStudy ? "/explanation" : "/products";
   if (!product) return <main id="main-content" tabIndex={-1} className="page-hero"><div className="mx-auto max-w-site px-page"><p className="eyebrow">{caseStudy ? "Example" : "Solution"} not found</p><h1 className="display-title mt-6">That {caseStudy ? "example" : "solution"} isn’t here.</h1><Link to={directory} className="button-outline mt-10">Back to {caseStudy ? "examples" : "solutions"}</Link></div></main>;
   const Icon = product.icon;
   const presentation = productPresentation[product.slug]!;
@@ -46,7 +46,7 @@ export default function ProductDetailPage({ caseStudy = false }: { caseStudy?: b
             {caseStudy && <div className="case-study-result case-study-wide" data-reveal><span className="icon-heading"><SemanticIcon icon={Target} />05 / Intended result</span><p>{product.caseStudy.result}</p></div>}
           </div>
           <div className="related-links" data-reveal>
-            <Link to={caseStudy ? `/products/${product.slug}` : `/case-studies/${product.slug}`} className="card-link">{caseStudy ? "Explore solution features" : "See the example problem and solution"}<ArrowUpRight className="size-4" /></Link>
+            {caseStudy && <Link to={`/products/${product.slug}`} className="card-link">Explore solution features<ArrowUpRight className="size-4" /></Link>}
             <Link to={`/services/${presentation.serviceSlug}`} className="card-link">Explore the related service<ArrowUpRight className="size-4" /></Link>
           </div>
         </div>

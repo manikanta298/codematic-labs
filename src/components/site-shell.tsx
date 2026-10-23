@@ -9,7 +9,6 @@ const navItems = [
   { label: "Home", to: "/" },
   { label: "Solutions", to: "/products" },
   { label: "Services", to: "/services" },
-  { label: "Examples", to: "/case-studies" },
   { label: "Why us", to: "/why-us" },
   { label: "Tech stack", to: "/tech-stack" },
 ] as const;
@@ -60,7 +59,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-site px-page py-14 sm:py-18">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_2fr]">
           <div><BrandLogo inverted nav /><p className="mt-5 max-w-sm text-sm leading-7 text-muted-foreground">Business software, websites, mobile apps and automation. We help teams simplify daily work, from the first plan to launch and support.</p><div className="mt-6 flex gap-3"><a className="social-link" href="https://github.com/manikanta298/codematic-labs" aria-label="GitHub"><Github className="size-4" /></a></div></div>
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3"><FooterColumn title="Solutions" links={[{label:"All solutions",to:"/products"},{label:"Restaurant POS",to:"/products/restaurant-pos"},{label:"AI chatbots",to:"/products/business-chatbots"}]} /><FooterColumn title="Services" links={[{label:"Custom software",to:"/services/custom-software-development"},{label:"UI/UX design",to:"/services/ui-ux-product-design"},{label:"AI & chatbots",to:"/services/ai-chatbot-development"}]} /><FooterColumn title="Company" links={[{label:"Solution examples",to:"/case-studies"},{label:"Why choose us",to:"/why-us"},{label:"Start a project",to:"/contact"}]} /></div>
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3"><FooterColumn title="Solutions" links={[{label:"All solutions",to:"/products"},{label:"Restaurant POS",to:"/products/restaurant-pos"},{label:"AI chatbots",to:"/products/business-chatbots"}]} /><FooterColumn title="Services" links={[{label:"Custom software",to:"/services/custom-software-development"},{label:"UI/UX design",to:"/services/ui-ux-product-design"},{label:"AI & chatbots",to:"/services/ai-chatbot-development"}]} /><FooterColumn title="Company" links={[{label:"Why choose us",to:"/why-us"},{label:"Start a project",to:"/contact"}]} /></div>
         </div>
         <div className="mt-12 border-t border-border pt-6 text-xs text-muted-foreground">© 2026 Codematic Labs. All rights reserved.</div>
       </div>
