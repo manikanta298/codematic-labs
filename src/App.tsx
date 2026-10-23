@@ -29,8 +29,8 @@ export function SiteContents() {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/services/:slug" element={<ServiceDetailPage />} />
         <Route path="/why-us" element={<WhyPage />} />
-        <Route path="/case-studies" element={<CasesPage />} />
-        <Route path="/case-studies/:slug" element={<CaseDetailPage />} />
+        <Route path="/explanation" element={<CasesPage />} />
+        <Route path="/explanation/:slug" element={<CaseDetailPage />} />
         <Route path="/tech-stack" element={<TechPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="*" element={<NotFound />} />

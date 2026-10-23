@@ -27,7 +27,7 @@ export default function HomePage() {
               <p className="text-base leading-7 text-muted-foreground">We build business software, websites, mobile apps and AI tools. Tell us what slows your team down. We’ll help you turn it into a clear, working solution.</p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link to="/contact" className="button-solid">Talk to our team <ArrowUpRight className="size-4" /></Link>
-                <Link to="/case-studies" className="button-quiet">Explore examples <MoveRight className="size-4" /></Link>
+                <Link to="/products" className="button-quiet">Explore solutions <MoveRight className="size-4" /></Link>
               </div>
             </div>
           </div>
@@ -82,11 +82,11 @@ export default function HomePage() {
         <div className="mx-auto max-w-site px-page">
           <div className="section-heading" data-reveal>
             <div><p className="index-label"><span>04</span> Solutions we can build</p><h2 className="section-title mt-5">Everyday problems. <span className="text-gradient">Practical solutions.</span></h2></div>
-            <div><p className="sample-note">Examples of solutions we can build. Benefits describe what each solution is designed to help with, not measured client results.</p><Link to="/case-studies" className="card-link mt-5">View all examples <ArrowRight className="size-4" /></Link></div>
+            <div><p className="sample-note">Examples of solutions we can build. Benefits describe what each solution is designed to help with, not measured client results.</p><Link to="/products" className="card-link mt-5">View all solutions <ArrowRight className="size-4" /></Link></div>
           </div>
           <div className="project-editorial-grid mt-12">
             {projects.map((project, index) => (
-              <Link key={project.slug} to={`/case-studies/${project.slug}`} className={`project-editorial-card group project-card-${index + 1}`} data-reveal>
+              <Link key={project.slug} to={`/products/${project.slug}`} className={`project-editorial-card group project-card-${index + 1}`} data-reveal>
                 <div className="media-frame photo-treatment"><img src={project.image} alt={project.imageAlt} width={1800} height={1200} loading="lazy" /></div>
                 <div className="project-card-copy"><div><p className="project-category-with-icon"><SemanticIcon icon={project.icon} />{project.category}</p><span>{project.result}</span></div><h3>{project.title}</h3><span className="project-name">{project.name}</span></div>
               </Link>
