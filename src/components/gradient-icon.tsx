@@ -3,6 +3,7 @@ import { useId, type ReactNode, type CSSProperties } from "react";
 
 // One custom gradient illustration family; Lucide references are semantic keys only.
 const artwork = {
+  logistics: <><path className="vi-back" d="m6 3 10-3 10 5v15l-10 5-10-5V3Z"/><path className="vi-front" d="m16 10 10-5v15l-10 5V10Z"/><path className="vi-line" d="m6 3 10 7m-5-9 10 6v5"/><path className="vi-line" strokeDasharray="2 3" d="M4 17H2v13h25"/><circle className="vi-front" cx="4" cy="17" r="3"/><path className="vi-back" d="M24 23a5 5 0 0 1 10 0c0 4-5 9-5 9s-5-5-5-9Z"/><circle className="vi-front" cx="29" cy="23" r="1.5"/></>,
   hospital: <><path className="vi-back" d="M7 9h18v22H7V9Z"/><path className="vi-front" d="M1 17h6v14H1Zm24 0h6v14h-6Z"/><rect className="vi-front" x="10" y="1" width="12" height="12" rx="3"/><path className="vi-shine" d="M16 4v6m-3-3h6M11 17h2m6 0h2m-10 5h2m6 0h2"/><path className="vi-line" d="M14 31v-6h4v6"/></>,
   pos: <><rect className="vi-back" x="2" y="3" width="22" height="16" rx="3"/><path className="vi-front" d="M10 19h6v6h-6Zm-6 6h18v5H4Z"/><path className="vi-shine" d="M7 9h8m-8 4h4"/><path className="vi-front" d="M22 11h9v18l-3-2-3 2-3-2V11Z"/><path className="vi-line" d="M25 15h3m-3 4h3m-3 4h2"/></>,
   food: <><path className="vi-back" d="M8 14a6 6 0 1 1 1-11 8 8 0 0 1 14 0 6 6 0 1 1 1 11v15H8V14Z"/><path className="vi-front" d="M8 22h16v7H8Z"/><path className="vi-shine" d="M12 15v5m8-5v5"/></>,
@@ -44,6 +45,7 @@ const artwork = {
 
 type Kind = keyof typeof artwork;
 const families: Record<Kind, string> = {
+  logistics: "Route",
   hospital: "Hospital", pos: "MonitorCheck",
   food: "ChefHat UtensilsCrossed",
   code: "CodeXml Code2", design: "Sparkles PenTool PencilRuler MousePointer2", web: "Globe Globe2 Earth",
@@ -70,6 +72,7 @@ const palettes = {
   blue: ["#a4c8ff", "#4f6fe8", "#edf5ff"],
 } as const;
 const paletteByKind: Partial<Record<Kind, keyof typeof palettes>> = {
+  logistics: "ocean",
   hospital: "rose", pos: "blue",
   food: "amber", shop: "violet", health: "rose", wallet: "mint", team: "blue", truck: "ocean",
   code: "blue", design: "violet", web: "ocean", mobile: "rose", workflow: "mint", bot: "violet",

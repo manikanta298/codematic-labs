@@ -379,3 +379,47 @@ main:focus, h1[tabindex="-1"]:focus { outline: none; }
 .industry-loop-tile .gradient-icon { width: 32px; height: 32px; }
 .custom-workflow-band .custom-icon-track { animation-duration: 38s; }
 @media (max-width: 540px) { .industry-loop-tile .gradient-icon { width: 28px; height: 28px; } }
+
+/* Two editorial showcases: custom workflow marks and authentic technology brands. */
+.workflow-showcase, .team-showcase { padding-block: clamp(3.5rem, 7vw, 6rem); border-block: 1px solid var(--border); overflow: clip; }
+.workflow-showcase { background: radial-gradient(ellipse at 10% 10%, rgb(28 116 144 / .09), transparent 60%), var(--background); }
+.team-showcase { background: radial-gradient(ellipse at 90% 90%, rgb(59 77 148 / .1), transparent 60%), var(--surface); }
+.showcase-heading { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: 3rem; align-items: end; margin-bottom: 2.5rem; }
+.showcase-title { max-width: 48rem; margin-top: 1.1rem; font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 3.25rem); font-weight: 600; line-height: 1.12; letter-spacing: -.025em; }
+.showcase-heading > p { max-width: 30rem; color: var(--muted-foreground); font-size: 1rem; line-height: 1.8; }
+.workflow-showcase .custom-icon-viewport, .team-showcase .custom-icon-viewport { mask-image: linear-gradient(to right, transparent, #000 2%, #000 98%, transparent); padding-block: .6rem 1rem; }
+.workflow-showcase .custom-icon-set, .team-showcase .custom-icon-set { min-width: 100cqw; justify-content: flex-start; gap: 1rem; padding-right: 1rem; }
+.workflow-showcase .custom-icon-track { animation-duration: 100s; }
+.team-showcase .custom-icon-track { animation-duration: 170s; }
+.workflow-showcase .custom-icon-viewport:hover .custom-icon-track, .team-showcase .custom-icon-viewport:hover .custom-icon-track { animation-play-state: paused; }
+.workflow-showcase-card { --workflow-accent: #64d5e7; position: relative; flex: 0 0 250px; width: 250px; min-height: 210px; padding: 1.4rem; border: 1px solid color-mix(in srgb, var(--workflow-accent) 22%, var(--border)); border-radius: 18px; background: linear-gradient(145deg, color-mix(in srgb, var(--workflow-accent) 7%, var(--card)), var(--card)); box-shadow: inset 0 1px 0 rgb(255 255 255 / .035); }
+.workflow-accent-rose { --workflow-accent: #ef8db4; }.workflow-accent-blue { --workflow-accent: #88abf2; }.workflow-accent-amber { --workflow-accent: #e9bd77; }.workflow-accent-mint { --workflow-accent: #76d4b2; }.workflow-accent-violet { --workflow-accent: #bb99ed; }
+.workflow-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.35rem; }
+.workflow-brand-mark { display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid color-mix(in srgb, var(--workflow-accent) 22%, transparent); border-radius: 14px; background: color-mix(in srgb, var(--workflow-accent) 9%, transparent); }
+.workflow-brand-mark .gradient-icon { width: 32px; height: 32px; }
+.workflow-card-detail { color: var(--workflow-accent); font: .68rem var(--font-mono); opacity: .6; }
+.workflow-showcase-card h3 { color: var(--foreground); font-size: 1.05rem; font-weight: 700; }
+.workflow-showcase-card p { max-width: 24ch; margin-top: .65rem; color: var(--muted-foreground); font-size: .85rem; line-height: 1.65; }
+.showcase-footer { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; justify-content: space-between; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.showcase-footer > p { color: var(--muted-foreground); font-size: .8rem; line-height: 1.6; }
+.technology-areas { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin-bottom: 1.5rem; color: var(--muted-foreground); font-size: .72rem; }
+.technology-areas span { padding: .45rem .7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--background); }
+.technology-areas i { width: 14px; height: 1px; background: var(--border-strong); }
+.technology-showcase-card { display: flex; align-items: center; gap: 1rem; flex: 0 0 222px; width: 222px; min-height: 110px; padding: 1.15rem; border: 1px solid var(--border); border-radius: 16px; background: var(--card); }
+.technology-showcase-logo { display: grid; flex: 0 0 auto; width: 50px; height: 50px; place-items: center; padding: 8px; border-radius: 12px; background: #f8fafc; }
+.technology-showcase-logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.technology-showcase-category { display: block; color: var(--muted-foreground); font-size: .62rem; line-height: 1.5; }
+.technology-showcase-card p { margin-top: .25rem; font-size: .85rem; font-weight: 700; line-height: 1.4; color: var(--foreground); }
+@media (max-width: 760px) {
+  .showcase-heading { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; margin-bottom: 2rem; }
+  .showcase-heading > p { max-width: 40rem; font-size: .9rem; }
+  .workflow-showcase-card { flex-basis: 224px; width: 224px; min-height: 208px; padding: 1.2rem; }
+  .technology-showcase-card { flex-basis: 204px; width: 204px; }
+  .technology-areas { gap: .45rem; }.technology-areas i { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .workflow-showcase .custom-icon-viewport, .team-showcase .custom-icon-viewport { mask-image: none; }
+  .workflow-showcase .custom-icon-set, .team-showcase .custom-icon-set { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); width: 100%; padding-right: 0; }
+  .workflow-showcase-card, .technology-showcase-card { width: auto; min-width: 0; }
+  .workflow-showcase .custom-icon-set[data-loop-copy="1"], .team-showcase .custom-icon-set[data-loop-copy="1"] { display: none; }
+}
