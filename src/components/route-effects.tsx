@@ -3,6 +3,10 @@ import { useLocation, useNavigationType } from "react-router-dom";
 import { getRouteMetadata, siteOrigin } from "../lib/route-metadata";
 
 export function RouteEffects() {
+  useEffect(() => {
+    document.documentElement.dataset["appReady"] = "true";
+    window.dispatchEvent(new Event("codematic:ready"));
+  }, []);
   const location = useLocation();
   const navigationType = useNavigationType();
   const first = useRef(true);
