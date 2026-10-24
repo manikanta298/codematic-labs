@@ -8,6 +8,62 @@
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <title>Codematic Labs</title>
+    <script>
+      document.documentElement.classList.add('logo-loader-enabled');
+      window.logoLoaderSafetyTimer = setTimeout(function () {
+        document.documentElement.classList.remove('logo-loader-enabled');
+        var loader = document.getElementById('site-loader');
+        if (loader) loader.remove();
+      }, 8000);
+    </script>
+    <style id="logo-loader-styles">
+/* Original logo pixels: no tracing, recoloring, filters, or shape distortion. */
+.logo-loader {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  place-items: center;
+  padding: 24px;
+  background: #000;
+  color: #fff;
+  opacity: 1;
+  transition: opacity 420ms ease, visibility 420ms ease;
+}
+.logo-loader-enabled .logo-loader { display: grid; }
+.logo-loader.is-leaving { opacity: 0; visibility: hidden; pointer-events: none; }
+.logo-loader__stage { display: grid; justify-items: center; gap: clamp(28px, 5vw, 44px); width: 100%; }
+/* Crop only transparent canvas margins with CSS; keep the PNG file unchanged.
+   Original canvas: 3000 x 2000. Visible artwork bounds: (565,452)-(2435,1377). */
+.logo-loader__art {
+  position: relative;
+  width: min(640px, 86vw, 121.2973svh);
+  aspect-ratio: 1870 / 925;
+  overflow: hidden;
+  animation: logo-loader-breathe 2200ms ease-in-out infinite;
+}
+.logo-loader__image {
+  position: absolute;
+  display: block;
+  width: 160.427807%;
+  max-width: none;
+  height: auto;
+  left: -30.213904%;
+  top: -48.864865%;
+}
+.logo-loader__rail { width: min(160px, 36vw); height: 2px; overflow: hidden; border-radius: 999px; background: #182027; }
+.logo-loader__rail span { display: block; width: 45%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, transparent, #6acbe7, #fff, transparent); animation: logo-loader-sweep 1600ms ease-in-out infinite; }
+.logo-loader__sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@keyframes logo-loader-breathe { 0%, 100% { opacity: .72; } 50% { opacity: 1; } }
+@keyframes logo-loader-sweep { from { transform: translateX(-115%); } to { transform: translateX(330%); } }
+@media (prefers-reduced-motion: reduce) {
+  .logo-loader__art, .logo-loader__rail span { animation: none; }
+  .logo-loader__art { opacity: 1; }
+  .logo-loader__rail span { width: 100%; background: #6acbe7; }
+  .logo-loader { transition-duration: 100ms; }
+}
+    </style>
+    <script src="/logo-loader.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Open+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -15,6 +71,15 @@
     <noscript><style>[data-reveal], .word-reveal-item { opacity: 1 !important; transform: none !important; }</style></noscript>
   </head>
   <body>
+    <div id="site-loader" class="logo-loader" role="status" aria-label="Loading Codematic Labs" aria-live="polite">
+      <div class="logo-loader__stage">
+        <div class="logo-loader__art">
+          <img class="logo-loader__image" src="/src/assets/logo white.png" alt="" width="3000" height="2000" fetchpriority="high" decoding="async" />
+        </div>
+        <div class="logo-loader__rail" aria-hidden="true"><span></span></div>
+        <span class="logo-loader__sr-only">Loading website. Please wait.</span>
+      </div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
