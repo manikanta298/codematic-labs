@@ -13,8 +13,10 @@ for (const file of await readdir('dist', { recursive: true })) {
   const html = await readFile(resolve('dist', file), 'utf8');
   assert.equal((html.match(/id="site-loader"/g) || []).length, 1, file);
   assert.ok(html.indexOf('id="site-loader"') < html.indexOf('id="root"'), `${file}: outside hydration root`);
-  assert.ok(html.includes('prefers-reduced-motion: reduce') && html.includes('8000'), `${file}: safeguards`);
-  const image = html.match(/<img[^>]*class="logo-loader__image"[^>]*>/)?.[0];
+  assert.ok(/prefers-reduced-motion:\s*reduce/.test(html) && html.includes('8000'), `${file}: safeguards`);
+  const images = html.match(/<img[^>]*class="logo-loader__image"[^>]*>/g) || [];
+  assert.equal(images.length, 4, `${file}: four reveal layers`);
+  const image = images[1];
   const src = image?.match(/src="([^"]+)"/)?.[1];
   assert.ok(src?.startsWith('/assets/'), `${file}: bundled logo`);
   const actualLogo = await readFile(resolve('dist', decodeURIComponent(src.slice(1))));
@@ -30,8 +32,8 @@ function fixture({ loaded = false, mounted = false, missing = false, broken = fa
   let id = 0, removed = false;
   const root = { dataset: mounted ? { appReady: 'true' } : {}, classList: { add: name => classes.add(name), remove: name => classes.delete(name) } };
   const image = { complete: broken, naturalWidth: broken ? 0 : 3000, addEventListener: (name, fn) => { callbacks['image:' + name] = fn; } };
-  const overlay = { classList: { add: name => leaving.add(name) }, addEventListener: (name, fn) => { callbacks[name] = fn; }, querySelector: () => image, remove: () => { removed = true; } };
-  const window = { logoLoaderSafetyTimer: 999, addEventListener: (name, fn) => { callbacks[name] = fn; } };
+  const overlay = { classList: { add: name => leaving.add(name) }, addEventListener: (name, fn) => { callbacks[name] = fn; }, querySelectorAll: () => [image, image, image, image], remove: () => { removed = true; } };
+  const window = { logoLoaderSafetyTimer: 999, matchMedia: () => ({ matches: false }), addEventListener: (name, fn) => { callbacks[name] = fn; } };
   const context = { window, document: { documentElement: root, readyState: loaded ? 'complete' : 'loading', getElementById: () => missing ? null : overlay }, Promise, setTimeout: fn => { timers.set(++id, fn); return id; }, clearTimeout: n => timers.delete(n) };
   return { context, callbacks, classes, leaving, timers, removed: () => removed };
 }
@@ -39,13 +41,16 @@ function fixture({ loaded = false, mounted = false, missing = false, broken = fa
 for (const order of [['load', 'codematic:ready'], ['codematic:ready', 'load']]) {
   const f = fixture(); vm.runInNewContext(script, f.context);
   f.callbacks[order[0]](); await flush(); assert.equal(f.leaving.size, 0);
-  f.callbacks[order[1]](); await flush(); assert.ok(f.leaving.has('is-leaving'));
+  f.callbacks[order[1]](); await flush(); assert.equal(f.leaving.size, 0);
+  for (const fn of [...f.timers.values()]) fn();
+  assert.ok(f.leaving.has('is-leaving'));
   for (const fn of [...f.timers.values()]) fn();
   assert.ok(f.removed()); assert.equal(f.classes.size, 0);
   f.context.window.LogoLoader.finish();
 }
 for (const options of [{ loaded: true, mounted: true }, { broken: true }, { missing: true }]) {
   const f = fixture(options); vm.runInNewContext(script, f.context); await flush();
+  for (const fn of [...f.timers.values()]) fn();
   for (const fn of [...f.timers.values()]) fn();
   assert.equal(f.classes.size, 0); if (!options.missing) assert.ok(f.removed());
 }
@@ -54,4 +59,4 @@ const f = fixture();
 vm.runInNewContext(template.match(/<script>([\s\S]*?)<\/script>/)[1], f.context);
 for (const fn of [...f.timers.values()]) fn();
 assert.equal(f.classes.size, 0); assert.ok(f.removed());
-console.log(`PASS: loader on ${pages} HTML pages, original logo bytes, React/load ordering, image failure, missing overlay, transition fallback and independent failsafe.`);
+console.log(`PASS: loader on ${pages} HTML pages, original logo bytes, React/load ordering, cinematic delay, image failure, missing overlay, transition fallback and independent failsafe.`);

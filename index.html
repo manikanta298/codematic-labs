@@ -10,6 +10,7 @@
     <title>Codematic Labs</title>
     <script>
       document.documentElement.classList.add('logo-loader-enabled');
+      window.logoLoaderStartedAt = Date.now();
       window.logoLoaderSafetyTimer = setTimeout(function () {
         document.documentElement.classList.remove('logo-loader-enabled');
         var loader = document.getElementById('site-loader');
@@ -17,51 +18,28 @@
       }, 8000);
     </script>
     <style id="logo-loader-styles">
-/* Original logo pixels: no tracing, recoloring, filters, or shape distortion. */
-.logo-loader {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 2147483000;
-  place-items: center;
-  padding: 24px;
-  background: #000;
-  color: #fff;
-  opacity: 1;
-  transition: opacity 420ms ease, visibility 420ms ease;
-}
-.logo-loader-enabled .logo-loader { display: grid; }
-.logo-loader.is-leaving { opacity: 0; visibility: hidden; pointer-events: none; }
-.logo-loader__stage { display: grid; justify-items: center; gap: clamp(28px, 5vw, 44px); width: 100%; }
-/* Crop only transparent canvas margins with CSS; keep the PNG file unchanged.
-   Original canvas: 3000 x 2000. Visible artwork bounds: (565,452)-(2435,1377). */
-.logo-loader__art {
-  position: relative;
-  width: min(640px, 86vw, 121.2973svh);
-  aspect-ratio: 1870 / 925;
-  overflow: hidden;
-  animation: logo-loader-breathe 2200ms ease-in-out infinite;
-}
-.logo-loader__image {
-  position: absolute;
-  display: block;
-  width: 160.427807%;
-  max-width: none;
-  height: auto;
-  left: -30.213904%;
-  top: -48.864865%;
-}
-.logo-loader__rail { width: min(160px, 36vw); height: 2px; overflow: hidden; border-radius: 999px; background: #182027; }
-.logo-loader__rail span { display: block; width: 45%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, transparent, #6acbe7, #fff, transparent); animation: logo-loader-sweep 1600ms ease-in-out infinite; }
-.logo-loader__sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-@keyframes logo-loader-breathe { 0%, 100% { opacity: .72; } 50% { opacity: 1; } }
-@keyframes logo-loader-sweep { from { transform: translateX(-115%); } to { transform: translateX(330%); } }
-@media (prefers-reduced-motion: reduce) {
-  .logo-loader__art, .logo-loader__rail span { animation: none; }
-  .logo-loader__art { opacity: 1; }
-  .logo-loader__rail span { width: 100%; background: #6acbe7; }
-  .logo-loader { transition-duration: 100ms; }
-}
+/* Exact uploaded 3000 × 2000 logo; visible bounds: 565,452–2435,1377. */
+.cl-loader{position:fixed;inset:0;z-index:9999;display:none;place-items:center;background:#000;overflow:hidden;opacity:1;transition:opacity .55s ease}
+.cl-loader.is-leaving{opacity:0;pointer-events:none}
+.cl-scene{position:relative;width:min(680px,86vw,130vh);width:min(680px,86vw,130svh);aspect-ratio:1870/925;isolation:isolate}
+.cl-layer{position:absolute;inset:0;pointer-events:none}
+.cl-layer img{position:absolute;display:block;width:160.427807%;max-width:none;height:auto;left:-30.213904%;top:-48.864865%}
+.cl-outline{clip-path:inset(0 0 27% 0);animation:cl-trace 1.15s cubic-bezier(.4,0,.2,1) both,cl-outline-out .5s ease 1.25s forwards}
+.cl-symbol{clip-path:inset(0 0 27% 0);animation:cl-fill 1.3s cubic-bezier(.16,1,.3,1) .65s both}
+.cl-wordmark{clip-path:inset(73% 100% 7% 0);animation:cl-wordmark 1.35s cubic-bezier(.16,1,.3,1) 1.65s both}
+.cl-tagline{clip-path:inset(93% 0 0 0);animation:cl-tagline .85s ease 2.65s both}
+.cl-sheen{position:absolute;inset:0;overflow:hidden;pointer-events:none;clip-path:inset(0)}
+.cl-sheen:after{content:"";position:absolute;inset:-20%;background:linear-gradient(110deg,transparent 44%,#ffffff12 50%,transparent 56%);transform:translateX(-110%);animation:cl-sheen 1.1s ease 3s both}
+.cl-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@keyframes cl-trace{from{clip-path:inset(0 0 100% 0);opacity:0;transform:translateY(3%)}to{clip-path:inset(0 0 27% 0);opacity:.8;transform:none}}
+@keyframes cl-outline-out{to{opacity:0}}
+@keyframes cl-fill{from{opacity:0;transform:translateY(3%) scale(1.04);filter:blur(3px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes cl-wordmark{from{clip-path:inset(73% 100% 7% 0);opacity:0;transform:translateY(2%)}to{clip-path:inset(73% 0 7% 0);opacity:1;transform:none}}
+@keyframes cl-tagline{from{opacity:0;transform:translateY(2%)}to{opacity:1;transform:none}}
+@keyframes cl-sheen{to{transform:translateX(110%)}}
+@media(prefers-reduced-motion:reduce){.cl-layer{animation:none;transform:none;filter:none}.cl-outline,.cl-sheen{display:none}.cl-symbol{opacity:1}.cl-wordmark{clip-path:inset(73% 0 7% 0);opacity:1}.cl-tagline{opacity:1}.cl-loader{transition-duration:.1s}}
+
+.logo-loader-enabled .cl-loader{display:grid}
     </style>
     <script src="/logo-loader.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -71,15 +49,7 @@
     <noscript><style>[data-reveal], .word-reveal-item { opacity: 1 !important; transform: none !important; }</style></noscript>
   </head>
   <body>
-    <div id="site-loader" class="logo-loader" role="status" aria-label="Loading Codematic Labs" aria-live="polite">
-      <div class="logo-loader__stage">
-        <div class="logo-loader__art">
-          <img class="logo-loader__image" src="/src/assets/logo white.png" alt="" width="3000" height="2000" fetchpriority="high" decoding="async" />
-        </div>
-        <div class="logo-loader__rail" aria-hidden="true"><span></span></div>
-        <span class="logo-loader__sr-only">Loading website. Please wait.</span>
-      </div>
-    </div>
+    <div id="site-loader" class="logo-loader cl-loader" role="status" aria-label="Loading Codematic Labs" aria-live="polite"><span class="cl-status">Loading website. Please wait.</span><div class="cl-scene" aria-hidden="true"><div class="cl-layer cl-outline"><img class="logo-loader__image" src="/src/assets/logo-outline.png" alt="" width="3000" height="2000" decoding="async" /></div><div class="cl-layer cl-symbol"><img class="logo-loader__image" src="/src/assets/logo white.png" alt="" width="3000" height="2000" decoding="async" /></div><div class="cl-layer cl-wordmark"><img class="logo-loader__image" src="/src/assets/logo white.png" alt="" width="3000" height="2000" decoding="async" /></div><div class="cl-layer cl-tagline"><img class="logo-loader__image" src="/src/assets/logo white.png" alt="" width="3000" height="2000" decoding="async" /></div><div class="cl-sheen"></div></div></div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
